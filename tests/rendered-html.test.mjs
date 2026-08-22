@@ -71,6 +71,14 @@ test("home positions Abdul across every requested capability", async () => {
   assert.match(html, /href="\/projects"/);
 });
 
+test("about explains professional focus, process, and team capabilities", async () => {
+  const html = await (await render("/about")).text();
+  assert.match(html, /Professional focus/i);
+  assert.match(html, /Working approach/i);
+  assert.match(html, /Team capabilities/i);
+  assert.match(html, /<title>About Abdul Moiz/);
+});
+
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();
