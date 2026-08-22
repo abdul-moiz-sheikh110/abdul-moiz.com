@@ -177,6 +177,7 @@ test("small project labels meet WCAG AA on their actual backgrounds", async () =
     [...stylesheet.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map((match) => [match[1], match[2]]),
   );
 
+  assert.match(stylesheet, /body\s*{[^}]*background:\s*var\(--paper\);/s);
   assert.match(stylesheet, /\.case-count\s*{[^}]*color:\s*var\(--muted\);/s);
   assert.match(stylesheet, /\.browser-top\s*{[^}]*background:\s*var\(--browser-chrome\);/s);
   assert.match(stylesheet, /\.browser-top small\s*{[^}]*color:\s*var\(--browser-text\);/s);
