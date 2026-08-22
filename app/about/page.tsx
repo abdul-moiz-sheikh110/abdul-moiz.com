@@ -24,14 +24,20 @@ export default function AboutPage() {
       <SiteHeader />
 
       <section className="hero page-hero shell" aria-labelledby="about-title">
-        <p className="eyebrow"><span /> About Abdul Moiz</p>
+        <p className="eyebrow"><span /> About Us</p>
         <h1 id="about-title">A team built around<br />useful <em>outcomes.</em></h1>
         <div className="hero-bottom">
-          <p>
-            I am Abdul Moiz, Team Lead of a collaborative digital team. I understand every service we offer and how
-            each part contributes to the complete project. I guide the work from planning to final review, while the
-            team works together throughout delivery.
-          </p>
+          <div className="about-hero-copy">
+            <p>
+              I have a team working across websites, custom software, cybersecurity, SEO, logo design, and graphic
+              design.
+            </p>
+            <p>
+              We bring these skills together to understand each project clearly, establish a practical direction,
+              and produce work that supports the client’s goals. Every contribution remains connected to the complete
+              project and its intended outcome.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -42,9 +48,12 @@ export default function AboutPage() {
         </div>
         <div>
           <p>
-            Every project is a combined team effort. We plan the direction together, bring the right knowledge into
-            each stage, and review the work as one team. Abdul Moiz keeps every part aligned, clear, and ready for
-            delivery.
+            Every project begins with a shared understanding of what needs to be achieved. We plan the direction
+            together, keep communication clear, and connect every stage of the work to the original requirements.
+          </p>
+          <p>
+            The work is reviewed throughout the process so important details remain consistent and the final result
+            is properly prepared for delivery.
           </p>
         </div>
       </section>
@@ -56,12 +65,13 @@ export default function AboutPage() {
         </div>
         <div>
           <p>
-            We plan, build, check, and refine work as a team. When it helps the project, the right specialist may join
-            a discussion, while the public work remains focused on the outcome rather than individual profiles.
+            We work together from the first discussion to final delivery. Different skills and perspectives come
+            into the project when needed, helping us make thoughtful decisions and keep every part of the work
+            consistent.
           </p>
           <p>
-            This gives each project the benefit of focused knowledge without losing the shared view of what the work
-            needs to achieve.
+            Because the project is planned and reviewed as a team, important details remain connected throughout the
+            process. This results in work that feels complete, practical, and ready to use.
           </p>
         </div>
       </section>

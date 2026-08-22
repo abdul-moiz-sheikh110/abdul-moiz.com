@@ -296,7 +296,6 @@ test("About explains Abdul Moiz team leadership", async () => {
     "Abdul Moiz",
     "Team Lead",
     "Every project is a combined effort",
-    "the right specialist",
     "quality review",
     "Web development",
     "Custom software development",
@@ -322,14 +321,22 @@ test("About explains Abdul Moiz team leadership", async () => {
   }
 });
 
-test("About presents Abdul Moiz as an involved lead within one team", async () => {
+test("About uses the approved team-first content", async () => {
   const html = await (await render("/about")).text();
 
-  assert.match(html, /I understand every service we offer and how each part contributes to the complete project/i);
-  assert.match(html, /I guide the work from planning to final review, while the team works together throughout delivery/i);
-  assert.match(html, /Every project is a combined team effort/i);
-  assert.match(html, /We plan the direction together, bring the right knowledge into each stage, and review the work as one team/i);
-  assert.match(html, /Abdul Moiz keeps every part aligned, clear, and ready for delivery/i);
+  assert.match(html, />\s*About Us\s*</i);
+  assert.match(html, /class="about-hero-copy"/i);
+  assert.match(html, /I have a team working across websites, custom software, cybersecurity, SEO, logo design, and graphic design/i);
+  assert.match(html, /We bring these skills together to understand each project clearly, establish a practical direction/i);
+  assert.match(html, /Every project begins with a shared understanding of what needs to be achieved/i);
+  assert.match(html, /The work is reviewed throughout the process so important details remain consistent/i);
+  assert.match(html, /Every project is a combined effort/i);
+  assert.match(html, /Different skills and perspectives come into the project when needed/i);
+  assert.match(html, /This results in work that feels complete, practical, and ready to use/i);
+  assert.doesNotMatch(html, /I understand every service we offer/i);
+
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.about-hero-copy\s*{[^}]*display:\s*grid[^}]*gap:/s);
 });
 
 test("About keeps the approved team-led section structure", async () => {
