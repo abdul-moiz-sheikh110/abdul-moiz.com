@@ -138,12 +138,30 @@ test("renders the professional Abdul Moiz portfolio", async () => {
   assert.match(html, /Start a Fiverr conversation/);
 });
 
-test("home positions Abdul across every requested capability", async () => {
+test("Home links selected projects to the complete archive", async () => {
   const html = await (await render("/")).text();
-  for (const phrase of ["Web development", "Cybersecurity", "SEO", "Custom systems", "Team delivery"]) {
+  assert.match(html, /href="\/projects"/);
+});
+
+test("Home presents the complete team-led offer", async () => {
+  const html = await (await render("/")).text();
+
+  for (const phrase of [
+    "Abdul Moiz",
+    "Team Lead",
+    "Web development",
+    "Custom software development",
+    "Cybersecurity",
+    "SEO",
+    "Logo design",
+    "Graphic design",
+    "Understand the need",
+    "Plan together",
+    "Build with specialists",
+    "Review and deliver",
+  ]) {
     assert.match(html, new RegExp(phrase, "i"));
   }
-  assert.match(html, /href="\/projects"/);
 });
 
 test("about explains professional focus, process, and team capabilities", async () => {
