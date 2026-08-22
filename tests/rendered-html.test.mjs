@@ -109,6 +109,23 @@ test("shared contact section invites visitors through Fiverr", async () => {
   assert.doesNotMatch(source, /Tell Abdul Moiz what you need/);
 });
 
+test("custom cursor is progressive and respects user input preferences", async () => {
+  const cursorSource = await readFile(new URL("../app/components/CustomCursor.tsx", import.meta.url), "utf8");
+  const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(cursorSource, /pointer:\s*fine/);
+  assert.match(cursorSource, /prefers-reduced-motion:\s*reduce/);
+  assert.match(cursorSource, /pointermove/);
+  assert.match(cursorSource, /a, button, \[data-cursor\]/);
+  assert.match(cursorSource, /aria-hidden="true"/);
+  assert.match(layoutSource, /<CustomCursor\s*\/>/);
+  assert.match(css, /\.custom-cursor-ring/);
+  assert.match(css, /\.custom-cursor-dot/);
+  assert.match(css, /\.cursor-enhanced/);
+  assert.match(css, /@media\s*\(pointer:\s*coarse\)/);
+});
+
 test("110 Solutions is never used as the site owner", async () => {
   for (const route of ["/", "/about"]) {
     const html = await (await render(route)).text();
