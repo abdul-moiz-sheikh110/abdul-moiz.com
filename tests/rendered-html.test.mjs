@@ -308,6 +308,19 @@ test("website projects use their supplied screenshots as meaningful previews", a
   assert.match(homeHtml, /src="\/school-lms-dashboard\.png"/);
 });
 
+test("website screenshots remain fully visible while the LMS keeps its dashboard crop", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(
+    stylesheet,
+    /\.project-image-preview:not\(\.lms-mock\) img\s*{[^}]*height:\s*auto;[^}]*object-fit:\s*contain;/s,
+  );
+  assert.match(
+    stylesheet,
+    /\.lms-mock img\s*{[^}]*height:\s*clamp\(280px,\s*32vw,\s*415px\);[^}]*object-fit:\s*cover;/s,
+  );
+});
+
 test("Home uses the approved coordinated-team portfolio content", async () => {
   const html = await (await render("/")).text();
 

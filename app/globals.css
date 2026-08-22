@@ -599,12 +599,17 @@ h3,
 .project-image-preview img {
   display: block;
   width: 100%;
-  height: clamp(280px, 32vw, 415px);
-  object-fit: cover;
   object-position: top center;
 }
 
+.project-image-preview:not(.lms-mock) img {
+  height: auto;
+  object-fit: contain;
+}
+
 .lms-mock img {
+  height: clamp(280px, 32vw, 415px);
+  object-fit: cover;
   object-position: left top;
 }
 
