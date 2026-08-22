@@ -3,25 +3,19 @@ import type { Metadata } from "next";
 import { ContactCTA } from "../components/ContactCTA";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { services } from "../data/services";
 
 export const metadata: Metadata = {
-  title: "About Abdul Moiz | Digital Solutions & Team",
+  title: "About Abdul Moiz",
   description:
-    "Learn how Abdul Moiz coordinates web development, cybersecurity, SEO, and custom systems with a capable delivery team.",
+    "Meet Abdul Moiz, the Team Lead behind a collaborative group delivering web development, custom software development, cybersecurity, SEO, logo design, and graphic design.",
 };
 
-const capabilities = [
-  ["Web development", "Websites and digital experiences shaped around clear business needs."],
-  ["Cybersecurity", "Security-focused thinking for web projects and the systems that support them."],
-  ["SEO", "Search-aware website foundations that help content stay clear and discoverable."],
-  ["Custom systems", "Dashboards, portals, and management tools designed for everyday work."],
-];
-
 const approach = [
-  ["01", "Understand the brief", "Start with goals, audiences, constraints, and the work the project needs to support."],
-  ["02", "Shape the scope", "Turn the brief into clear priorities, practical deliverables, and an agreed direction."],
-  ["03", "Coordinate delivery", "Bring in the right team support for design, development, quality assurance, and technical work."],
-  ["04", "Keep communication clear", "Share progress, gather feedback, and keep the next decision easy to understand."],
+  ["01", "Understand the need", "We begin with the outcome the work needs to support and the priorities that will shape it."],
+  ["02", "Plan together", "The team turns those priorities into a practical direction for the work ahead."],
+  ["03", "Build with care", "Specialists contribute their knowledge where it is most useful, with the work connected from start to finish."],
+  ["04", "Review and deliver", "We check the result together before delivery, so the final work is ready to use."],
 ];
 
 export default function AboutPage() {
@@ -31,63 +25,62 @@ export default function AboutPage() {
 
       <section className="hero page-hero shell" aria-labelledby="about-title">
         <p className="eyebrow"><span /> About Abdul Moiz</p>
-        <h1 id="about-title">A practical partner<br />for <em>digital work.</em></h1>
+        <h1 id="about-title">A team built around<br />useful <em>outcomes.</em></h1>
         <div className="hero-bottom">
           <p>
-            Abdul Moiz is the direct point of contact for website projects, cybersecurity,
-            SEO, and custom systems, with team support matched to the needs of each project.
+            I am Abdul Moiz, the Team Lead behind a group of digital specialists. I understand each part of the work,
+            stay involved throughout the project, and review the final result with the team.
           </p>
         </div>
       </section>
 
-      <section className="about-grid professional-background shell" aria-labelledby="professional-background-heading">
+      <section className="about-grid professional-background shell" aria-labelledby="how-we-work-heading">
         <div>
-          <p className="tag">About the work</p>
-          <h2 id="professional-background-heading">Professional background</h2>
+          <p className="tag">How we work</p>
+          <h2 id="how-we-work-heading">One clear direction,<br />connected delivery.</h2>
         </div>
         <div>
           <p>
-            Abdul Moiz works across web development, cybersecurity, SEO, and custom systems.
-            He leads client communication and coordinates team-supported delivery for each project.
+            We match the work to the right specialist when their knowledge will help move the project forward.
+            Abdul Moiz stays close to the overall direction, making sure every part supports a useful result.
           </p>
         </div>
       </section>
 
-      <section className="about-grid shell" aria-labelledby="professional-focus-heading">
+      <section className="about-grid shell" aria-labelledby="shared-responsibility-heading">
         <div>
-          <p className="tag">Professional focus</p>
-          <h2 id="professional-focus-heading">Clear digital direction, coordinated delivery.</h2>
+          <p className="tag">Shared responsibility</p>
+          <h2 id="shared-responsibility-heading">Every project is a combined effort.</h2>
         </div>
         <div>
           <p>
-            The focus is on helping clients move from a defined need to useful digital work.
-            Abdul coordinates the conversation, clarifies the priorities, and brings together
-            the relevant skills for the scope.
+            We plan, build, check, and refine work as a team. When it helps the project, the right specialist may join
+            a discussion, while the public work remains focused on the outcome rather than individual profiles.
           </p>
           <p>
-            This approach keeps the client relationship personal while making room for the
-            broader expertise a website, security review, SEO foundation, or custom system may need.
+            This gives each project the benefit of focused knowledge without losing the shared view of what the work
+            needs to achieve.
           </p>
         </div>
       </section>
 
-      <section className="services about-capabilities" aria-labelledby="skills-heading">
+      <section className="services about-capabilities" aria-labelledby="capabilities-heading">
         <div className="shell">
-          <div className="section-head light"><p>Skills and capabilities</p><span>Practical digital delivery</span></div>
-          <h2 id="skills-heading">Capability where<br />the work <em>needs it.</em></h2>
+          <div className="section-head light"><p>Six connected capabilities</p><span>Practical digital delivery</span></div>
+          <h2 id="capabilities-heading">The right knowledge<br />for the <em>work.</em></h2>
           <div className="capability-grid">
-            {capabilities.map(([title, description]) => (
-              <article key={title}>
-                <h3>{title}</h3>
-                <p>{description}</p>
+            {services.map((service) => (
+              <article key={service.title}>
+                <h3>{service.title}</h3>
+                <p>{service.summary}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="approach-list shell" aria-labelledby="working-approach-heading">
-        <div className="section-head"><p id="working-approach-heading">Working approach</p><span>Four practical steps</span></div>
+      <section className="approach-list shell" aria-labelledby="working-method-heading">
+        <div className="section-head"><p id="working-method-heading">Working method</p><span>Four practical steps</span></div>
         <div>
           {approach.map(([number, title, description]) => (
             <article key={number}>
@@ -101,18 +94,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="team shell" aria-labelledby="team-capabilities-heading">
+      <section className="team shell" aria-labelledby="quality-heading">
         <div className="team-card">
-          <p className="tag">Team capabilities</p>
-          <h2 id="team-capabilities-heading">One conversation.<br />The right support.</h2>
+          <p className="tag">Quality at every stage</p>
+          <h2 id="quality-heading">Careful work,<br />quality <em>review.</em></h2>
           <p>
-            Abdul keeps ownership of the client conversation. When the work calls for wider
-            input, the delivery team supports the project with design, development, quality assurance,
-            and technical delivery.
+            Abdul Moiz and the team review progress throughout the work, then carry out a final quality review before
+            delivery. We look for a result that is clear, useful, and ready for its next step.
           </p>
-          <div className="team-chips"><span>Design</span><span>Development</span><span>Quality assurance</span><span>Technical support</span></div>
         </div>
-        <div className="team-aside"><span>How the team works</span><strong>Clear roles.<br />Useful collaboration.<br />A focused result.</strong></div>
+        <div className="team-aside"><span>What guides the work</span><strong>Shared planning.<br />Focused knowledge.<br />Useful results.</strong></div>
       </section>
 
       <ContactCTA />

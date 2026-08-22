@@ -179,13 +179,50 @@ test("Home presents the complete team-led offer", async () => {
   }
 });
 
-test("about explains professional focus, process, and team capabilities", async () => {
+test("About explains Abdul Moiz team leadership", async () => {
   const html = await (await render("/about")).text();
-  assert.match(html, /Professional background/i);
-  assert.match(html, /Professional focus/i);
-  assert.match(html, /Working approach/i);
-  assert.match(html, /Team capabilities/i);
-  assert.match(html, /<title>About Abdul Moiz/);
+
+  for (const phrase of [
+    "Abdul Moiz",
+    "Team Lead",
+    "Every project is a combined effort",
+    "the right specialist",
+    "quality review",
+    "Web development",
+    "Custom software development",
+    "Cybersecurity",
+    "SEO",
+    "Logo design",
+    "Graphic design",
+  ]) {
+    assert.match(html, new RegExp(phrase, "i"));
+  }
+
+  for (const forbidden of [
+    "marketing",
+    "client communication",
+    "Fiverr account support",
+    "account management",
+    "Shabbir",
+    "Arham",
+    "Laiba",
+    "Daniyal",
+  ]) {
+    assert.doesNotMatch(html, new RegExp(forbidden, "i"));
+  }
+});
+
+test("About keeps the approved team-led section structure", async () => {
+  const html = await (await render("/about")).text();
+  for (const heading of [
+    "How we work",
+    "Shared responsibility",
+    "Six connected capabilities",
+    "Quality at every stage",
+  ]) {
+    assert.match(html, new RegExp(heading, "i"));
+  }
+  assert.match(html, /<title>About Abdul Moiz<\/title>/i);
 });
 
 test("removes every starter and generic studio placeholder", async () => {
