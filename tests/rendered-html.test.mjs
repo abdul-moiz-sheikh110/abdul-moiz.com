@@ -51,6 +51,18 @@ test("projects route contains every verified project and link", async () => {
   }
 });
 
+test("LMS project uses its supplied image without an invented website URL", async () => {
+  const html = await (await render("/projects")).text();
+  assert.match(html, /src="\/school-lms-dashboard.png"/);
+  assert.match(html, /School management dashboard showing users, staff, attendance, fees, and reports/);
+  assert.doesNotMatch(html, /href="[^"]+"[^>]*>View LMS website/);
+});
+
+test("projects metadata describes Abdul Moiz work", async () => {
+  const html = await (await render("/projects")).text();
+  assert.match(html, /<title>Projects \| Abdul Moiz/);
+});
+
 test("renders the professional Abdul Moiz portfolio", async () => {
   const response = await render();
   assert.equal(response.status, 200);
