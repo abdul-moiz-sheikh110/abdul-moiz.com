@@ -91,6 +91,18 @@ test("public routes exclude prohibited internal copy", async () => {
   }
 });
 
+test("Home source passes the prohibited-copy scan", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.doesNotMatch(source, /marketing|client communication|Fiverr account support|account management|Shabbir|Arham|Laiba|Daniyal/i);
+});
+
+test("Home source passes the full-name scan", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.doesNotMatch(source, /Abdul(?! Moiz)/);
+});
+
 test("shared contact section invites visitors through Fiverr", async () => {
   const source = await readFile(new URL("../app/components/ContactCTA.tsx", import.meta.url), "utf8");
   assert.match(source, /Join us through Fiverr\./);

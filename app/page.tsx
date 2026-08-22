@@ -22,7 +22,7 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <p className="eyebrow"><span /> Portfolio · Team-led delivery</p>
-        <h1>Abdul<br />Moiz<span className="accent-dot">.</span></h1>
+        <h1>Abdul Moiz<span className="accent-dot">.</span></h1>
         <div className="hero-bottom">
           <div>
             <p className="hero-role">Team Lead for websites, software, security, search, and design.</p>
@@ -80,9 +80,7 @@ export default function Home() {
                 <h2>{project.title}</h2>
                 <p className="summary">{project.description}</p>
                 <ul>
-                  {project.capabilities
-                    .filter((capability) => !/marketing/i.test(capability))
-                    .map((capability) => <li key={capability}>{capability}</li>)}
+                  {project.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
                 </ul>
                 {project.href ? (
                   <a className="text-link" href={project.href} target="_blank" rel="noreferrer">View live website <span aria-hidden="true">↗</span></a>
@@ -116,7 +114,7 @@ export default function Home() {
           <p className="tag">Team delivery</p>
           <h2 id="team-delivery-heading">Abdul Moiz leads.<br />Specialists deliver.</h2>
           <p>
-            Abdul stays involved from the first requirement to the final quality review.
+            Abdul Moiz stays involved from the first requirement to the final quality review.
             The team brings focused skills to each stage, so the finished work is useful,
             checked, and ready to use.
           </p>
