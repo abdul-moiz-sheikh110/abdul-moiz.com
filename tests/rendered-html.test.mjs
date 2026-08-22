@@ -87,6 +87,7 @@ test("home positions Abdul across every requested capability", async () => {
 
 test("about explains professional focus, process, and team capabilities", async () => {
   const html = await (await render("/about")).text();
+  assert.match(html, /Professional background/i);
   assert.match(html, /Professional focus/i);
   assert.match(html, /Working approach/i);
   assert.match(html, /Team capabilities/i);

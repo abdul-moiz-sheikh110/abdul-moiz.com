@@ -40,6 +40,19 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="about-grid professional-background shell" aria-labelledby="professional-background-heading">
+        <div>
+          <p className="tag">About the work</p>
+          <h2 id="professional-background-heading">Professional background</h2>
+        </div>
+        <div>
+          <p>
+            Abdul Moiz works across web development, cybersecurity, SEO, and custom systems.
+            He leads client communication and coordinates team-supported delivery for each project.
+          </p>
+        </div>
+      </section>
+
       <section className="about-grid shell" aria-labelledby="professional-focus-heading">
         <div>
           <p className="tag">Professional focus</p>
