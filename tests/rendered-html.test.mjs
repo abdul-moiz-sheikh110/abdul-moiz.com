@@ -162,6 +162,21 @@ test("Home presents the complete team-led offer", async () => {
   ]) {
     assert.match(html, new RegExp(phrase, "i"));
   }
+
+  const processSection = html.match(
+    /<section class="approach-list shell" aria-labelledby="delivery-process-heading">[\s\S]*?<\/section>/i,
+  );
+  assert.ok(processSection, "Home should include the delivery process section");
+  assert.equal((processSection[0].match(/<h2\b/gi) ?? []).length, 1);
+
+  for (const title of [
+    "Understand the need",
+    "Plan together",
+    "Build with specialists",
+    "Review and deliver",
+  ]) {
+    assert.match(processSection[0], new RegExp(`<h3>${title}<\\/h3>`, "i"));
+  }
 });
 
 test("about explains professional focus, process, and team capabilities", async () => {
