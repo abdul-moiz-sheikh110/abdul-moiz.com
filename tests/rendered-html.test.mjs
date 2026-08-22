@@ -36,6 +36,12 @@ test("every route identifies Abdul Moiz and links all routes", async () => {
   }
 });
 
+test("shared contact section invites visitors through Fiverr", async () => {
+  const source = await readFile(new URL("../app/components/ContactCTA.tsx", import.meta.url), "utf8");
+  assert.match(source, /Join us through Fiverr\./);
+  assert.doesNotMatch(source, /Tell Abdul Moiz what you need/);
+});
+
 test("110 Solutions is never used as the site owner", async () => {
   for (const route of ["/", "/about"]) {
     const html = await (await render(route)).text();
