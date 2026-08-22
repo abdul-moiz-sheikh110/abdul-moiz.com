@@ -125,9 +125,9 @@ export default function Home() {
                 )}
               </div>
               {project.image ? (
-                <div className="case-visual lms-mock">
+                <div className={`case-visual ${project.visual}-mock project-image-preview`}>
                   <div className="browser-frame">
-                    <div className="browser-top"><i /><i /><i /><small>School LMS dashboard</small></div>
+                    <div className="browser-top"><i /><i /><i /><small>{project.href ? project.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "") : "School LMS dashboard"}</small></div>
                     <img src={project.image} alt={project.imageAlt} />
                   </div>
                 </div>

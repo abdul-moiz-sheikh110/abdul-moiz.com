@@ -596,11 +596,15 @@ h3,
   line-height: 0.96;
 }
 
-.lms-mock img {
+.project-image-preview img {
   display: block;
   width: 100%;
   height: clamp(280px, 32vw, 415px);
   object-fit: cover;
+  object-position: top center;
+}
+
+.lms-mock img {
   object-position: left top;
 }
 

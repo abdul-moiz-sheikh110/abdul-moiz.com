@@ -24,6 +24,8 @@ export const projects: Project[] = [
     ],
     href: "https://crestviewacademy.pk/",
     visual: "academy",
+    image: "/project-previews/crest-view-academy.png",
+    imageAlt: "Crest View Academy website homepage",
   },
   {
     slug: "teleco-solutions",
@@ -38,6 +40,8 @@ export const projects: Project[] = [
     ],
     href: "https://www.teleco-solutions.com/",
     visual: "teleco",
+    image: "/project-previews/teleco-solutions.png",
+    imageAlt: "Teleco Solutions website homepage",
   },
   {
     slug: "110-solutions",
@@ -52,6 +56,8 @@ export const projects: Project[] = [
     ],
     href: "https://www.110solutions.com.au/",
     visual: "solutions",
+    image: "/project-previews/110-solutions.png",
+    imageAlt: "110 Solutions website homepage",
   },
   {
     slug: "school-lms",

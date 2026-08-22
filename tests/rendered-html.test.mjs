@@ -288,6 +288,26 @@ test("Home presents the complete team-led offer", async () => {
   }
 });
 
+test("website projects use their supplied screenshots as meaningful previews", async () => {
+  const projectsHtml = await (await render("/projects")).text();
+  const homeHtml = await (await render("/")).text();
+
+  const previews = [
+    ["/project-previews/crest-view-academy.png", "Crest View Academy website homepage"],
+    ["/project-previews/teleco-solutions.png", "Teleco Solutions website homepage"],
+    ["/project-previews/110-solutions.png", "110 Solutions website homepage"],
+  ];
+
+  for (const [src, alt] of previews) {
+    assert.match(projectsHtml, new RegExp(`src="${src}"[^>]*alt="${alt}"`));
+  }
+
+  assert.match(homeHtml, /src="\/project-previews\/crest-view-academy\.png"/);
+  assert.match(homeHtml, /src="\/project-previews\/teleco-solutions\.png"/);
+  assert.doesNotMatch(homeHtml, /src="\/project-previews\/110-solutions\.png"/);
+  assert.match(homeHtml, /src="\/school-lms-dashboard\.png"/);
+});
+
 test("Home uses the approved coordinated-team portfolio content", async () => {
   const html = await (await render("/")).text();
 

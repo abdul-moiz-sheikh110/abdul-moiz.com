@@ -14,10 +14,14 @@ export const metadata: Metadata = {
 
 function ProjectVisual({ project }: { project: Project }) {
   if (project.image) {
+    const frameLabel = project.href
+      ? project.href.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "")
+      : "School LMS dashboard";
+
     return (
-      <div className="case-visual lms-mock">
+      <div className={`case-visual ${project.visual}-mock project-image-preview`}>
         <div className="browser-frame">
-          <div className="browser-top"><i /><i /><i /><small>School LMS dashboard</small></div>
+          <div className="browser-top"><i /><i /><i /><small>{frameLabel}</small></div>
           <img src={project.image} alt={project.imageAlt} />
         </div>
       </div>
