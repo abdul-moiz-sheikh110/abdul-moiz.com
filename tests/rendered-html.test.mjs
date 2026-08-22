@@ -473,6 +473,10 @@ test("About How we work section uses the approved teal feature treatment", async
   assert.match(stylesheet, /\.professional-background\s*{[^}]*background:\s*var\(--ink\);[^}]*color:\s*var\(--card\);/s);
   assert.match(stylesheet, /\.professional-background::before\s*{[^}]*background:\s*var\(--accent-light\);/s);
   assert.match(stylesheet, /\.about-accent-line\s*{[^}]*color:\s*var\(--accent-light\);/s);
+  assert.match(
+    stylesheet,
+    /\.about-grid\.professional-background > div:last-child\s*{[^}]*color:\s*var\(--ink-inverse\);/s,
+  );
 });
 
 test("About Shared responsibility section uses a readable mint feature treatment", async () => {

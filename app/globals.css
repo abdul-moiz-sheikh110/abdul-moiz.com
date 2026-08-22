@@ -697,6 +697,14 @@ h3,
   line-height: 1.75;
 }
 
+.about-grid.professional-background > div:last-child {
+  color: var(--ink-inverse);
+}
+
+.about-grid.shared-responsibility > div:last-child {
+  color: var(--ink);
+}
+
 .about-grid > div:last-child p {
   margin: 0 0 20px;
 }
