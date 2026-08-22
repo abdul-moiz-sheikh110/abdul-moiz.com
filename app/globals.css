@@ -232,7 +232,7 @@ h3,
   gap: 18px;
 }
 
-.about-hero-copy p {
+.hero-bottom .about-hero-copy p {
   max-width: none;
 }
 

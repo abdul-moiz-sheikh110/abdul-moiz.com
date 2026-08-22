@@ -493,7 +493,7 @@ test("site sections use available space without oversized empty gaps", async () 
   const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
 
   assert.match(stylesheet, /\.hero-bottom > \.about-hero-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*1000px;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/s);
-  assert.match(stylesheet, /\.about-hero-copy p\s*{[^}]*max-width:\s*none;/s);
+  assert.match(stylesheet, /\.hero-bottom \.about-hero-copy p\s*{[^}]*max-width:\s*none;/s);
   assert.match(stylesheet, /\.about-grid\s*{[^}]*gap:\s*clamp\(40px,\s*7vw,\s*88px\);[^}]*padding:\s*clamp\(64px,\s*8vw,\s*100px\)\s+0;/s);
   assert.match(stylesheet, /\.about-grid > div:last-child\s*{[^}]*max-width:\s*620px;/s);
   assert.match(stylesheet, /\.projects-list\s*{[^}]*gap:\s*clamp\(56px,\s*7vw,\s*88px\);/s);
