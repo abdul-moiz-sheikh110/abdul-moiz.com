@@ -42,8 +42,40 @@ export function HeadingMotion() {
     const observer = new MutationObserver(enhanceAllHeadings);
     observer.observe(document.body, { childList: true, subtree: true });
 
+    let activeHeading: HTMLElement | null = null;
+    const clearWave = () => {
+      activeHeading?.querySelectorAll(".heading-letter").forEach((letter) => {
+        letter.classList.remove("wave-center", "wave-near", "wave-far");
+      });
+      activeHeading = null;
+    };
+
+    const moveWave = (event: PointerEvent) => {
+      const target = event.target instanceof Element ? event.target : null;
+      const activeLetter = target?.closest(".heading-letter");
+      const heading = activeLetter?.closest("h1, h2") as HTMLElement | null;
+      if (!activeLetter || !heading) return clearWave();
+
+      if (activeHeading !== heading) clearWave();
+      activeHeading = heading;
+      const letters = Array.from(heading.querySelectorAll(".heading-letter"));
+      const activeIndex = letters.indexOf(activeLetter);
+      letters.forEach((letter, index) => {
+        const distance = Math.abs(index - activeIndex);
+        letter.classList.toggle("wave-center", distance === 0);
+        letter.classList.toggle("wave-near", distance === 1);
+        letter.classList.toggle("wave-far", distance === 2);
+      });
+    };
+
+    document.addEventListener("pointermove", moveWave, { passive: true });
+    document.addEventListener("pointerleave", clearWave);
+
     return () => {
       observer.disconnect();
+      clearWave();
+      document.removeEventListener("pointermove", moveWave);
+      document.removeEventListener("pointerleave", clearWave);
       document.querySelectorAll<HTMLElement>("h1[data-letters-enhanced], h2[data-letters-enhanced]").forEach((heading) => {
         heading.querySelectorAll(".heading-letter").forEach((letter) => letter.replaceWith(letter.textContent ?? ""));
         heading.normalize();

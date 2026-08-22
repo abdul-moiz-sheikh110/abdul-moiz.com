@@ -1174,9 +1174,17 @@ h3,
 }
 
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .heading-letter:hover {
+  .heading-letter.wave-center {
     color: var(--accent);
-    transform: scale(1.12);
+    transform: translateY(-0.13em) scale(1.12);
+  }
+
+  .heading-letter.wave-near {
+    transform: translateY(-0.085em) scale(1.06);
+  }
+
+  .heading-letter.wave-far {
+    transform: translateY(-0.04em) scale(1.025);
   }
 }
 
