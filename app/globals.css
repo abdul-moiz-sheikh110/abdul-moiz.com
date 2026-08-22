@@ -344,9 +344,13 @@ h3,
   border-bottom: 1px solid var(--dark-line);
 }
 
-.service-list article > span,
-.approach-list article > span {
+.service-list article > span {
   color: var(--ink-inverse);
+  font-size: 11px;
+}
+
+.approach-list article > span {
+  color: var(--ink-soft);
   font-size: 11px;
 }
 

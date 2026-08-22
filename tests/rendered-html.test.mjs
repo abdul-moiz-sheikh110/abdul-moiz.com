@@ -306,6 +306,23 @@ function contrastRatio(first, second) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
+test("process number contrast meets WCAG AA on the paper background", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+  const tokens = Object.fromEntries(
+    [...stylesheet.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map((match) => [match[1], match[2]]),
+  );
+  const processNumberRule = stylesheet.match(/\.approach-list article > span\s*{([^}]*)}/s);
+
+  assert.ok(processNumberRule, "Process numbers should have their own foreground rule");
+  const foreground = processNumberRule[1].match(/color:\s*var\(--(ink-soft|accent-dark)\);/);
+  assert.ok(foreground, "Process numbers should use a light-surface text token");
+  assert.match(stylesheet, /body\s*{[^}]*background:\s*var\(--paper\);/s);
+  assert.ok(
+    contrastRatio(tokens[foreground[1]], tokens.paper) >= 4.5,
+    `${foreground[1]} process numbers on paper should meet 4.5:1 contrast`,
+  );
+});
+
 test("editorial typography and original theme remain accessible", async () => {
   const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
   const tokens = Object.fromEntries(
