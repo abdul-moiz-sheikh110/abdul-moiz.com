@@ -166,6 +166,15 @@ test("route navigation resets retained scroll without overriding anchor links", 
   assert.match(layoutSource, /<ScrollToTop\s*\/>/);
 });
 
+test("hero supporting copy aligns beneath each page heading", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const heroBottom = css.match(/\.hero-bottom\s*{[^}]*}/s);
+
+  assert.ok(heroBottom, "hero bottom layout should be defined");
+  assert.match(heroBottom[0], /justify-content:\s*space-between/);
+  assert.doesNotMatch(heroBottom[0], /justify-content:\s*flex-end/);
+});
+
 test("Home includes a continuously moving service strip", async () => {
   const html = await (await render("/" )).text();
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
