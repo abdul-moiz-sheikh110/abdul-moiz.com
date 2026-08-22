@@ -29,6 +29,9 @@ test("renders Home, About, and Projects routes with Abdul Moiz ownership metadat
 test("Home metadata describes Abdul Moiz team-led digital services", async () => {
   const html = await (await render("/")).text();
   assert.match(html, /<title>Abdul Moiz \| Team-Led Digital Services<\/title>/i);
+  const description = html.match(/<meta name="description" content="([^"]*)"\/>/i);
+  assert.ok(description, "Home should include a description meta tag");
+  assert.match(description[1], /Abdul Moiz/i);
 
   for (const service of [
     "Web development",
@@ -38,21 +41,41 @@ test("Home metadata describes Abdul Moiz team-led digital services", async () =>
     "Logo design",
     "Graphic design",
   ]) {
-    assert.match(html, new RegExp(service, "i"));
+    assert.match(description[1], new RegExp(service, "i"));
   }
 });
 
-test("every route presents Abdul Moiz as Team Lead with the shared navigation", async () => {
+function elementMarkup(html, tagName) {
+  const element = html.match(new RegExp(`<${tagName}\\b[^>]*>[\\s\\S]*?<\\/${tagName}>`, "i"));
+  assert.ok(element, `Expected a ${tagName} element`);
+  return element[0];
+}
+
+test("every route presents Abdul Moiz as Team Lead in the shared header and footer", async () => {
   for (const route of ["/", "/about", "/projects"]) {
     const html = await (await render(route)).text();
-    assert.match(html, /Abdul Moiz/);
-    assert.match(html, /Team Lead/i);
-    assert.match(html, /collaborative team/i);
-    assert.match(html, /href="\/"/);
-    assert.match(html, /href="\/about"/);
-    assert.match(html, /href="\/projects"/);
-    assert.match(html, /href="\/#contact"/);
+    const header = elementMarkup(html, "header");
+    const footer = elementMarkup(html, "footer");
 
+    assert.match(header, /Abdul Moiz/);
+    assert.match(header, /Team Lead/i);
+    assert.match(header, /href="\/"/);
+    assert.match(header, /href="\/about"/);
+    assert.match(header, /href="\/projects"/);
+    assert.match(header, /href="\/#contact"/);
+
+    assert.match(footer, /Abdul Moiz/);
+    assert.match(footer, /Team Lead/i);
+    assert.match(footer, /Digital services led by Abdul Moiz and delivered through a collaborative team\./i);
+    assert.match(footer, /href="\/"/);
+    assert.match(footer, /href="\/about"/);
+    assert.match(footer, /href="\/projects"/);
+  }
+});
+
+test("public routes exclude prohibited internal copy", async () => {
+  for (const route of ["/", "/about", "/projects"]) {
+    const html = await (await render(route)).text();
     for (const forbidden of [
       "marketing",
       "client communication",
