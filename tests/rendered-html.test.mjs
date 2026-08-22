@@ -492,7 +492,7 @@ test("About Shared responsibility section uses a readable mint feature treatment
 test("site sections use available space without oversized empty gaps", async () => {
   const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
 
-  assert.match(stylesheet, /\.hero-bottom > \.about-hero-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*none;[^}]*grid-template-columns:\s*minmax\(220px,\s*0\.7fr\)\s+minmax\(320px,\s*1\.3fr\);/s);
+  assert.match(stylesheet, /\.hero-bottom > \.about-hero-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*1000px;[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\);/s);
   assert.match(stylesheet, /\.about-hero-copy p\s*{[^}]*max-width:\s*none;/s);
   assert.match(stylesheet, /\.about-grid\s*{[^}]*gap:\s*clamp\(40px,\s*7vw,\s*88px\);[^}]*padding:\s*clamp\(64px,\s*8vw,\s*100px\)\s+0;/s);
   assert.match(stylesheet, /\.about-grid > div:last-child\s*{[^}]*max-width:\s*620px;/s);

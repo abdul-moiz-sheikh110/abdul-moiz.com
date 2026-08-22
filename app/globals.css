@@ -226,10 +226,10 @@ h3,
 
 .hero-bottom > .about-hero-copy {
   width: 100%;
-  max-width: none;
-  grid-template-columns: minmax(220px, 0.7fr) minmax(320px, 1.3fr);
+  max-width: 1000px;
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  gap: clamp(36px, 7vw, 88px);
+  gap: 18px;
 }
 
 .about-hero-copy p {
