@@ -306,19 +306,51 @@ function contrastRatio(first, second) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test("accent text and focus indicators meet WCAG contrast requirements", async () => {
+test("editorial typography and original theme remain accessible", async () => {
   const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
   const tokens = Object.fromEntries(
     [...stylesheet.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map((match) => [match[1], match[2]]),
   );
 
-  assert.match(stylesheet, /--orange-text:\s*#[a-f\d]{6}/i);
-  assert.ok(contrastRatio(tokens["orange-text"], tokens.paper) >= 4.5);
-  assert.ok(contrastRatio(tokens.ink, tokens.orange) >= 4.5);
-  assert.ok(contrastRatio("#ffffff", tokens.ink) >= 3);
-  assert.ok(contrastRatio(tokens.ink, tokens.paper) >= 3);
-  assert.ok(contrastRatio(tokens.ink, tokens.orange) >= 3);
-  assert.match(stylesheet, /a:focus-visible\s*{[^}]*outline:\s*3px solid #fff;[^}]*box-shadow:\s*0 0 0 6px var\(--ink\);/s);
+  for (const token of [
+    "Archivo",
+    "Spline Sans",
+    "IBM Plex Mono",
+    "--paper",
+    "--card",
+    "--ink",
+    "--ink-soft",
+    "--accent",
+    "--accent-dark",
+    "--line",
+  ]) {
+    assert.match(stylesheet, new RegExp(token));
+  }
+
+  assert.doesNotMatch(stylesheet, /#d4451f|--orange\b|neon|glow|backdrop-filter/i);
+  assert.match(stylesheet, /body\s*{[^}]*font-family:\s*var\(--font-body\);/s);
+  assert.match(stylesheet, /h1[\s\S]*font-family:\s*var\(--font-display\);/s);
+  assert.match(stylesheet, /\.eyebrow[\s\S]*font-family:\s*var\(--font-mono\);/s);
+  assert.match(stylesheet, /@media\s*\(max-width:\s*850px\)/);
+  assert.match(stylesheet, /@media\s*\(max-width:\s*560px\)/);
+  assert.match(stylesheet, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  assert.match(stylesheet, /:focus-visible\s*{[^}]*outline:\s*3px solid var\(--card\);[^}]*box-shadow:\s*0 0 0 6px var\(--ink\);/s);
+
+  for (const [foreground, background, minimum] of [
+    ["ink", "paper", 7],
+    ["ink", "card", 7],
+    ["ink-soft", "paper", 4.5],
+    ["ink-soft", "card", 4.5],
+    ["accent", "paper", 4.5],
+    ["accent", "card", 4.5],
+    ["accent-dark", "paper", 4.5],
+    ["ink", "line", 4.5],
+  ]) {
+    assert.ok(
+      contrastRatio(tokens[foreground], tokens[background]) >= minimum,
+      `${foreground} on ${background} should meet ${minimum}:1 contrast`,
+    );
+  }
 });
 
 test("small project labels meet WCAG AA on their actual backgrounds", async () => {
@@ -328,15 +360,14 @@ test("small project labels meet WCAG AA on their actual backgrounds", async () =
   );
 
   assert.match(stylesheet, /body\s*{[^}]*background:\s*var\(--paper\);/s);
-  assert.match(stylesheet, /\.case-count\s*{[^}]*color:\s*var\(--muted\);/s);
+  assert.match(stylesheet, /\.case-count[\s\S]*color:\s*var\(--ink-soft\);/s);
   assert.match(stylesheet, /\.browser-top\s*{[^}]*background:\s*var\(--browser-chrome\);/s);
   assert.match(stylesheet, /\.browser-top small\s*{[^}]*color:\s*var\(--browser-text\);/s);
-  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy\s*{[^}]*background:\s*linear-gradient\(145deg, var\(--solutions-light\), var\(--solutions-soft\)\);/s);
-  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy p\s*{[^}]*color:\s*var\(--solutions-text\);/s);
-  assert.ok(contrastRatio(tokens.muted, tokens.paper) >= 4.5);
+  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy\s*{[^}]*background:\s*var\(--stone-soft\);/s);
+  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy p\s*{[^}]*color:\s*var\(--accent-dark\);/s);
+  assert.ok(contrastRatio(tokens["ink-soft"], tokens.paper) >= 4.5);
   assert.ok(contrastRatio(tokens["browser-text"], tokens["browser-chrome"]) >= 4.5);
-  assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-soft"]) >= 4.5);
-  assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-light"]) >= 4.5);
+  assert.ok(contrastRatio(tokens["accent-dark"], tokens["stone-soft"]) >= 4.5);
 });
 
 test("team service and SEO data stay within the approved public scope", async () => {
