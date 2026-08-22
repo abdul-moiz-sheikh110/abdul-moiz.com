@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readdir, readFile } from "node:fs/promises";
+import path from "node:path";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -94,8 +96,14 @@ test("about explains professional focus, process, and team capabilities", async 
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();
+  const placeholders = new RegExp([
+    "Your " + "Studio",
+    "Starter " + "Project",
+    "codex-" + "preview",
+    "react-" + "loading-skeleton",
+  ].join("|"), "i");
 
-  assert.doesNotMatch(html, /Your Studio|Starter Project|codex-preview|react-loading-skeleton/i);
+  assert.doesNotMatch(html, placeholders);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/i);
 });
 
@@ -107,4 +115,29 @@ test("includes accessible project navigation and meaningful LMS image text", asy
   assert.match(html, /alt="School management dashboard showing users, staff, attendance, fees, and reports"/);
   assert.match(html, /href="https:\/\/crestviewacademy\.pk\/"/);
   assert.match(html, /href="https:\/\/www\.teleco-solutions\.com\/"/);
+});
+
+async function collectSourceFiles(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const nested = await Promise.all(entries.map(async (entry) => {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) return collectSourceFiles(entryPath);
+    return /\.tsx?$/.test(entry.name) ? [entryPath] : [];
+  }));
+  return nested.flat();
+}
+
+test("visible HTML, metadata, and source copy contain no em dashes", async () => {
+  const emDash = new RegExp("\\u2014");
+  for (const route of ["/", "/about", "/projects"]) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, emDash);
+  }
+
+  const appDirectory = path.resolve(import.meta.dirname, "../app");
+  const sourceFiles = await collectSourceFiles(appDirectory);
+  for (const sourceFile of sourceFiles) {
+    const source = await readFile(sourceFile, "utf8");
+    assert.doesNotMatch(source, emDash, `${path.relative(appDirectory, sourceFile)} contains an em dash`);
+  }
 });
