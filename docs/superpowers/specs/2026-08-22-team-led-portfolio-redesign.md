@@ -6,7 +6,7 @@ Reposition the portfolio from an individual service provider to an Abdul Moiz-le
 
 ## Public Positioning
 
-- Primary identity: Abdul Moiz
+- Primary identity: Abdul Moiz, always written in full in visible identity copy and metadata
 - Public role: Team Lead
 - Core promise: Abdul understands the full project, stays involved, reviews quality, and coordinates a team of specialists through delivery.
 - Delivery language uses `we` when describing services, projects, and outcomes.
@@ -51,17 +51,28 @@ Copy must avoid unexplained jargon. Where a technical term is necessary, the sur
 
 - Retain separate showcases and exact links for Crest View Academy, Teleco Solutions, and 110 Solutions.
 - Retain the School LMS showcase using the supplied image and no invented public link.
-- Add a team SEO work section using only verified information from the supplied Arham SEO portfolio.
-- SEO examples will be anonymized by industry and written in plain language.
+- Add exactly one team SEO case study using only verified information from the supplied Arham SEO portfolio.
+- The single SEO case study will be anonymized by industry and written in plain language.
 - Any figures taken from the supplied portfolio must be reproduced accurately and attributed to team SEO work, not personally to Abdul.
 - Avoid unsupported claims about the four existing development projects.
+
+## Visual Direction
+
+- Take structural and typographic inspiration from `https://www.shabbirkamal.com/` without copying its page or personal content.
+- Use Archivo for large display headings, Spline Sans for body copy, and IBM Plex Mono for small labels and project details, matching the reference site's typography system.
+- Use oversized, tightly spaced headings, generous whitespace, clear section labels, dark feature panels, large project storytelling blocks, and a strong editorial rhythm.
+- Use an original color system rather than the reference site's orange accent.
+- Preferred theme: deep navy ink, warm ivory paper, muted teal accents, and soft stone borders.
+- Avoid glossy gradients, random neon effects, excessive glow, generic AI illustrations, and other styling that makes the site look automatically generated.
+- Keep motion subtle and useful. Respect reduced-motion preferences.
+- Preserve strong contrast, keyboard focus visibility, and responsive layouts.
 
 ## Shared Interface
 
 - Navigation remains Home, About, Projects, and Contact.
 - Header and footer use Abdul Moiz and team-led language consistently.
 - The Fiverr call to action remains generic until the final profile URL is supplied.
-- The existing professional visual system remains, with targeted layout additions for team positioning and SEO examples.
+- Replace the existing visual system with the approved editorial portfolio direction while preserving all working routes and content safeguards.
 - Responsive behavior, keyboard focus visibility, and tested color contrast must be preserved.
 
 ## Content Rules
@@ -82,7 +93,9 @@ Copy must avoid unexplained jargon. Where a technical term is necessary, the sur
 - Confirm team-led delivery is clear on every page.
 - Confirm prohibited internal-role phrases and team member names do not appear.
 - Confirm exact project URLs and LMS image behavior remain unchanged.
-- Confirm SEO figures match the supplied PDF.
+- Confirm the website contains exactly one SEO case study and its figures match the supplied PDF.
+- Confirm every public identity reference uses the full name Abdul Moiz.
+- Confirm Archivo, Spline Sans, and IBM Plex Mono are applied according to the typography system.
 - Run lint, production build, route tests, contrast tests, and the em dash scan.
 
 ## Publishing
