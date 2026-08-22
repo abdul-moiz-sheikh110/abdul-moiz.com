@@ -327,6 +327,19 @@ test("project image frames fill their cards without oversized empty padding", as
   );
 });
 
+test("alternating project rows keep the image column as wide as 110 Solutions", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(
+    stylesheet,
+    /\.project-preview:nth-child\(even\),\s*\.case-study:nth-of-type\(even\)\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1\.28fr\)\s+minmax\(270px,\s*0\.72fr\);/s,
+  );
+  assert.match(
+    stylesheet,
+    /@media\s*\(max-width:\s*850px\)[\s\S]*\.project-preview:nth-child\(even\),\s*\.case-study:nth-of-type\(even\)\s*{[^}]*grid-template-columns:\s*1fr;/s,
+  );
+});
+
 test("Home uses the approved coordinated-team portfolio content", async () => {
   const html = await (await render("/")).text();
 

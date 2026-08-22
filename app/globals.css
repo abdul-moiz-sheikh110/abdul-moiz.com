@@ -415,6 +415,11 @@ h3,
   align-items: center;
 }
 
+.project-preview:nth-child(even),
+.case-study:nth-of-type(even) {
+  grid-template-columns: minmax(0, 1.28fr) minmax(270px, 0.72fr);
+}
+
 .project-preview:nth-child(even) > :first-child,
 .case-study:nth-of-type(even) .case-copy {
   order: 2;
@@ -989,6 +994,11 @@ h3,
   .project-preview:nth-child(even) .case-visual,
   .case-study:nth-of-type(even) .case-visual {
     order: initial;
+  }
+
+  .project-preview:nth-child(even),
+  .case-study:nth-of-type(even) {
+    grid-template-columns: 1fr;
   }
 
   .projects-list {
