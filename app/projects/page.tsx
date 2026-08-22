@@ -51,8 +51,7 @@ export default function ProjectsPage() {
         <h1 id="projects-title">Projects shaped<br />for <em>real needs.</em></h1>
         <div className="hero-bottom">
           <p>
-            A selection of website and custom system work coordinated by Abdul Moiz
-            with the support of a broader delivery team.
+            A selection of website and custom system work created and delivered by me and my team.
           </p>
         </div>
       </section>

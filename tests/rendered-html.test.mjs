@@ -288,6 +288,16 @@ test("Home presents the complete team-led offer", async () => {
   }
 });
 
+test("Projects introduction presents the work as delivered by Abdul Moiz and his team", async () => {
+  const html = await (await render("/projects")).text();
+
+  assert.match(
+    html,
+    /A selection of website and custom system work created and delivered by me and my team\./,
+  );
+  assert.doesNotMatch(html, /support of a broader delivery team/i);
+});
+
 test("website projects use their supplied screenshots as meaningful previews", async () => {
   const projectsHtml = await (await render("/projects")).text();
   const homeHtml = await (await render("/")).text();
