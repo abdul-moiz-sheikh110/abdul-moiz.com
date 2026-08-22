@@ -655,6 +655,37 @@ h3,
   color: var(--accent-light);
 }
 
+.shared-responsibility {
+  position: relative;
+  padding-inline: clamp(28px, 5vw, 72px);
+  border-top-color: var(--accent-dark);
+  background: var(--accent-light);
+  color: var(--ink);
+}
+
+.shared-responsibility::before {
+  content: "";
+  position: absolute;
+  top: clamp(54px, 8vw, 104px);
+  bottom: clamp(54px, 8vw, 104px);
+  left: 50%;
+  width: 1px;
+  background: var(--accent-dark);
+  opacity: 0.42;
+}
+
+.shared-responsibility .tag {
+  color: var(--accent-dark);
+}
+
+.shared-responsibility > div:last-child {
+  color: var(--ink);
+}
+
+.responsibility-accent {
+  color: var(--accent-dark);
+}
+
 .about-grid h2 {
   max-width: 10ch;
 }
@@ -1070,7 +1101,12 @@ h3,
     padding: 64px 28px;
   }
 
-  .professional-background::before {
+  .shared-responsibility {
+    padding: 64px 28px;
+  }
+
+  .professional-background::before,
+  .shared-responsibility::before {
     display: none;
   }
 

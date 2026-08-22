@@ -58,10 +58,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-grid shell" aria-labelledby="shared-responsibility-heading">
+      <section className="about-grid shared-responsibility shell" aria-labelledby="shared-responsibility-heading">
         <div>
           <p className="tag">Shared responsibility</p>
-          <h2 id="shared-responsibility-heading">Every project is a combined effort.</h2>
+          <h2 id="shared-responsibility-heading" aria-label="Every project is a combined effort.">Every project is a <span className="responsibility-accent">combined effort.</span></h2>
         </div>
         <div>
           <p>

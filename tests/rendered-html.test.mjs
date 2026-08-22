@@ -475,6 +475,16 @@ test("About How we work section uses the approved teal feature treatment", async
   assert.match(stylesheet, /\.about-accent-line\s*{[^}]*color:\s*var\(--accent-light\);/s);
 });
 
+test("About Shared responsibility section uses a readable mint feature treatment", async () => {
+  const html = await (await render("/about")).text();
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(html, /<section class="about-grid shared-responsibility shell"[\s\S]*<span class="responsibility-accent">combined effort\.<\/span>/i);
+  assert.match(stylesheet, /\.shared-responsibility\s*{[^}]*background:\s*var\(--accent-light\);[^}]*color:\s*var\(--ink\);/s);
+  assert.match(stylesheet, /\.shared-responsibility > div:last-child\s*{[^}]*color:\s*var\(--ink\);/s);
+  assert.match(stylesheet, /\.responsibility-accent\s*{[^}]*color:\s*var\(--accent-dark\);/s);
+});
+
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();
