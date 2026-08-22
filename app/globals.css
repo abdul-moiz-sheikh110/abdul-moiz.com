@@ -502,6 +502,11 @@ h3,
   border: 1px solid var(--line);
 }
 
+.case-visual.project-image-preview {
+  min-height: 0;
+  padding: 12px;
+}
+
 .academy-mock {
   background: var(--stone-soft);
 }

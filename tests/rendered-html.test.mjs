@@ -318,6 +318,15 @@ test("all project screenshots share one full-image size without cropping", async
   assert.doesNotMatch(stylesheet, /\.lms-mock img\s*{/);
 });
 
+test("project image frames fill their cards without oversized empty padding", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(
+    stylesheet,
+    /\.case-visual\.project-image-preview\s*{[^}]*min-height:\s*0;[^}]*padding:\s*12px;/s,
+  );
+});
+
 test("Home uses the approved coordinated-team portfolio content", async () => {
   const html = await (await render("/")).text();
 
