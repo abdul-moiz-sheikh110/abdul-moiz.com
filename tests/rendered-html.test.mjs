@@ -140,7 +140,7 @@ test("Projects includes one verified SEO case study", async () => {
   const seoCaseStudies = html.match(/<article\b[^>]*data-seo-case-study="true"[^>]*>[\s\S]*?<\/article>/gi) ?? [];
   assert.equal(seoCaseStudies.length, 1, "Projects should render exactly one SEO case study");
 
-  for (const metric of ["3.51K", "1.78M", "15.5", "3 qualified leads each month"]) {
+  for (const metric of ["3.51K", "1.78M", "15.5", "Improved from 23", "3 qualified leads each month"]) {
     assert.match(seoCaseStudies[0], new RegExp(metric.replaceAll(".", "\\.")));
   }
 });
@@ -413,6 +413,7 @@ test("team service and SEO data stay within the approved public scope", async ()
   assert.match(seoSource, /3\.51K/);
   assert.match(seoSource, /1\.78M/);
   assert.match(seoSource, /15\.5/);
+  assert.match(seoSource, /Improved from 23/);
   assert.match(seoSource, /3 qualified leads each month/);
   assert.doesNotMatch(`${servicesSource}\n${seoSource}`, /Shabbir|Arham|Laiba|Daniyal/);
 });
