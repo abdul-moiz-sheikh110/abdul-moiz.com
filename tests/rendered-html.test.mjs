@@ -194,3 +194,18 @@ test("small project labels meet WCAG AA on their actual backgrounds", async () =
   assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-soft"]) >= 4.5);
   assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-light"]) >= 4.5);
 });
+
+test("team service and SEO data stay within the approved public scope", async () => {
+  const servicesSource = await readFile(new URL("../app/data/services.ts", import.meta.url), "utf8");
+  const seoSource = await readFile(new URL("../app/data/seoCaseStudy.ts", import.meta.url), "utf8");
+
+  for (const service of ["Web development", "Custom software development", "Cybersecurity", "SEO", "Logo design", "Graphic design"]) {
+    assert.match(servicesSource, new RegExp(service));
+  }
+  assert.match(seoSource, /Software company/);
+  assert.match(seoSource, /3\.51K/);
+  assert.match(seoSource, /1\.78M/);
+  assert.match(seoSource, /15\.5/);
+  assert.match(seoSource, /3 qualified leads each month/);
+  assert.doesNotMatch(`${servicesSource}\n${seoSource}`, /Shabbir|Arham|Laiba|Daniyal/);
+});
