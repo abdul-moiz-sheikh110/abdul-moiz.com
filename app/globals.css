@@ -625,7 +625,34 @@ h3,
 }
 
 .professional-background {
+  position: relative;
+  padding-inline: clamp(28px, 5vw, 72px);
   border-top-color: var(--ink);
+  background: var(--ink);
+  color: var(--card);
+}
+
+.professional-background::before {
+  content: "";
+  position: absolute;
+  top: clamp(54px, 8vw, 104px);
+  bottom: clamp(54px, 8vw, 104px);
+  left: 50%;
+  width: 1px;
+  background: var(--accent-light);
+  opacity: 0.55;
+}
+
+.professional-background .tag {
+  color: var(--accent-light);
+}
+
+.professional-background > div:last-child {
+  color: var(--ink-inverse);
+}
+
+.about-accent-line {
+  color: var(--accent-light);
 }
 
 .about-grid h2 {
@@ -1037,6 +1064,14 @@ h3,
   .about-grid {
     gap: 34px;
     padding: 80px 0;
+  }
+
+  .professional-background {
+    padding: 64px 28px;
+  }
+
+  .professional-background::before {
+    display: none;
   }
 
   .about-grid h2 {

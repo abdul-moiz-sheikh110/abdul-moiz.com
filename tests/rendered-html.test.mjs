@@ -465,6 +465,16 @@ test("About keeps the approved team-led section structure", async () => {
   assert.match(html, /<title>About Abdul Moiz<\/title>/i);
 });
 
+test("About How we work section uses the approved teal feature treatment", async () => {
+  const html = await (await render("/about")).text();
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(html, /<section class="about-grid professional-background shell"[\s\S]*<span class="about-accent-line">connected delivery\.<\/span>/i);
+  assert.match(stylesheet, /\.professional-background\s*{[^}]*background:\s*var\(--ink\);[^}]*color:\s*var\(--card\);/s);
+  assert.match(stylesheet, /\.professional-background::before\s*{[^}]*background:\s*var\(--accent-light\);/s);
+  assert.match(stylesheet, /\.about-accent-line\s*{[^}]*color:\s*var\(--accent-light\);/s);
+});
+
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();

@@ -44,7 +44,7 @@ export default function AboutPage() {
       <section className="about-grid professional-background shell" aria-labelledby="how-we-work-heading">
         <div>
           <p className="tag">How we work</p>
-          <h2 id="how-we-work-heading">One clear direction,<br />connected delivery.</h2>
+          <h2 id="how-we-work-heading">One clear direction,<br /><span className="about-accent-line">connected delivery.</span></h2>
         </div>
         <div>
           <p>
