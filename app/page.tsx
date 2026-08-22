@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main>
       <nav className="nav shell" aria-label="Main navigation">
-        <a className="brand" href="#top" aria-label="Studio portfolio home"><span className="brand-mark">11</span><span>Your Studio</span></a>
+        <a className="brand" href="#top" aria-label="110 Solutions portfolio home"><span className="brand-mark">11</span><span>110 Solutions</span></a>
         <div className="nav-links"><a href="#work">Work</a><a href="#services">Services</a><a href="#team">Team</a><a className="nav-cta" href="#contact">Let&apos;s talk</a></div>
       </nav>
 
@@ -76,8 +76,8 @@ export default function Home() {
         <div className="team-aside"><span>Team-led delivery</span><strong>Clear scope.<br />Regular updates.<br />Professional results.</strong></div>
       </section>
 
-      <section className="contact" id="contact"><div className="shell"><p className="eyebrow invert"><span /> Have a project in mind?</p><h2>Let&apos;s build something<br /><em>useful.</em></h2><p>Tell us what you need, and we&apos;ll reply with a clear next step for your Fiverr project.</p><a href="https://www.fiverr.com/" target="_blank" rel="noreferrer">Start a Fiverr conversation <Arrow /></a><small>Replace this link with your Fiverr profile URL before publishing.</small></div></section>
-      <footer className="footer shell"><a className="brand" href="#top"><span className="brand-mark">11</span><span>Your Studio</span></a><p>Websites and systems, designed and built by one team.</p><a href="#top">Back to top ↑</a></footer>
+      <section className="contact" id="contact"><div className="shell"><p className="eyebrow invert"><span /> Have a project in mind?</p><h2>Let&apos;s build something<br /><em>useful.</em></h2><p>Tell us what you need, and we&apos;ll reply with a clear next step for your Fiverr project.</p><a href="https://www.fiverr.com/" target="_blank" rel="noreferrer">Start a Fiverr conversation <Arrow /></a></div></section>
+      <footer className="footer shell"><a className="brand" href="#top"><span className="brand-mark">11</span><span>110 Solutions</span></a><p>Websites and systems, designed and built by one team.</p><a href="#top">Back to top ↑</a></footer>
     </main>
   );
 }
