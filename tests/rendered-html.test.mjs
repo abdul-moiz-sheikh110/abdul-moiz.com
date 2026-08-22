@@ -77,7 +77,6 @@ test("public routes exclude prohibited internal copy", async () => {
   for (const route of ["/", "/about", "/projects"]) {
     const html = await (await render(route)).text();
     for (const forbidden of [
-      "marketing",
       "client communication",
       "Fiverr account support",
       "account management",
@@ -94,7 +93,7 @@ test("public routes exclude prohibited internal copy", async () => {
 test("Home source passes the prohibited-copy scan", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
 
-  assert.doesNotMatch(source, /marketing|client communication|Fiverr account support|account management|Shabbir|Arham|Laiba|Daniyal/i);
+  assert.doesNotMatch(source, /client communication|Fiverr account support|account management|Shabbir|Arham|Laiba|Daniyal/i);
 });
 
 test("Home source passes the full-name scan", async () => {
@@ -245,7 +244,7 @@ test("renders the professional Abdul Moiz portfolio", async () => {
   assert.match(html, /<title>[^<]*Abdul Moiz[^<]*<\/title>/i);
   assert.match(html, /<meta name="description" content="[^"]*Abdul Moiz[^"]*"\/>/i);
   assert.match(html, /Abdul Moiz/);
-  assert.match(html, /Start a Fiverr conversation/);
+  assert.match(html, /Discuss Your Project/);
 });
 
 test("Home links selected projects to the complete archive", async () => {
@@ -287,6 +286,31 @@ test("Home presents the complete team-led offer", async () => {
   ]) {
     assert.match(processSection[0], new RegExp(`<h3>${title}<\\/h3>`, "i"));
   }
+});
+
+test("Home uses the approved coordinated-team portfolio content", async () => {
+  const html = await (await render("/")).text();
+
+  for (const phrase of [
+    "Websites, software, security, search, and design, delivered by one coordinated team",
+    "We take time to understand each requirement, plan the work clearly, and review every stage together",
+    "View Our Projects",
+    "Every service is connected through shared planning, clear communication",
+    "Purpose built portals, dashboards, and software tools",
+    "Practical security reviews and improvements",
+    "We define the scope, responsibilities, and next steps",
+    "A focused selection of website and custom software work",
+    "Abdul Moiz stays involved from the first discussion to the final quality review",
+    "We combine focused skills with one shared project direction",
+    "Tell me what you need, what the finished work should achieve",
+    "Discuss Your Project",
+  ]) {
+    assert.match(html, new RegExp(phrase, "i"));
+  }
+
+  assert.doesNotMatch(html, /Team Lead for websites, software, security, search, and design/i);
+  assert.match(html, /href="\/projects"[^>]*>View Our Projects</i);
+  assert.match(html, /href="https:\/\/www\.fiverr\.com\/"[^>]*>\s*Discuss Your Project/i);
 });
 
 test("About explains Abdul Moiz team leadership", async () => {

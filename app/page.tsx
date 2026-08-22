@@ -9,11 +9,35 @@ const selectedProjects = projects.filter((project) =>
 );
 
 const deliverySteps = [
-  ["01", "Understand the need", "We start with the goals, the people using the work, and the practical outcome that matters."],
-  ["02", "Plan together", "We set a clear scope and make the next steps easy to follow."],
-  ["03", "Build with specialists", "The right people contribute to design, development, security, search, or visual work."],
-  ["04", "Review and deliver", "We test the work, review the details, and prepare it for confident use."],
+  ["01", "Understand the need", "We begin by understanding the goals, users, requirements, and practical outcome expected from the project."],
+  ["02", "Plan together", "We define the scope, responsibilities, and next steps so everyone understands how the project will move forward."],
+  ["03", "Build with specialists", "The relevant team members contribute to development, design, cybersecurity, SEO, or visual work while following one shared direction."],
+  ["04", "Review and deliver", "We test the work, review important details, complete the necessary refinements, and prepare everything for delivery."],
 ];
+
+const homeServices = [
+  ["01", "Web development", "Clear and responsive websites designed around your business, audience, and goals."],
+  ["02", "Custom software development", "Purpose built portals, dashboards, and software tools that support real business processes and everyday work."],
+  ["03", "Cybersecurity", "Practical security reviews and improvements that help protect websites, systems, accounts, and business information."],
+  ["04", "SEO", "Website, technical, and content improvements that help the right audience discover your business through search."],
+  ["05", "Logo design", "Distinct and professional logo concepts shaped around the identity, purpose, and character of your business."],
+  ["06", "Graphic design", "Clear and consistent visual material for websites, marketing campaigns, social media, presentations, and business communication."],
+];
+
+const selectedProjectCopy: Record<string, { description: string; capabilities: string[] }> = {
+  "crest-view-academy": {
+    description: "A warm and informative school website created to help parents understand the academy’s programmes, values, and admissions process.",
+    capabilities: ["Responsive website design", "Programme and admissions information", "Mobile friendly enquiry process"],
+  },
+  "teleco-solutions": {
+    description: "A structured corporate website for an ICT provider, presenting its connectivity, infrastructure, software, cloud, and managed services clearly.",
+    capabilities: ["Organised service catalogue", "Professional corporate presentation", "Clear customer enquiry points"],
+  },
+  "school-lms": {
+    description: "A central administration system designed to help schools manage everyday operations through one organised dashboard.",
+    capabilities: ["Students, staff, and attendance", "Fees, examinations, and timetables", "User roles, permissions, and reports"],
+  },
+};
 
 export default function Home() {
   return (
@@ -25,10 +49,10 @@ export default function Home() {
         <h1>Abdul Moiz<span className="accent-dot">.</span></h1>
         <div className="hero-bottom">
           <div>
-            <p className="hero-role">Team Lead for websites, software, security, search, and design.</p>
-            <p className="hero-summary">I lead a collaborative digital team. Together, we turn clear requirements into useful work that is built, checked, and ready to use.</p>
+            <p className="hero-role">Websites, software, security, search, and design, delivered by one coordinated team.</p>
+            <p className="hero-summary">I work with a collaborative digital team bringing together skills across web development, custom software, cybersecurity, SEO, logo design, and graphic design. We take time to understand each requirement, plan the work clearly, and review every stage together. This keeps the project consistent from the first discussion to final delivery and results in work that is practical, carefully checked, and ready to use.</p>
           </div>
-          <a className="circle-link" href="/projects" aria-label="View Abdul Moiz projects">↓</a>
+          <a className="hero-project-link" href="/projects">View Our Projects</a>
         </div>
       </section>
 
@@ -49,16 +73,16 @@ export default function Home() {
         <div className="services-intro">
           <h2 id="capabilities-heading">One coordinated team<br />for the <em>work ahead.</em></h2>
           <p>
-            We bring the right skills together for each project, keeping the work clear,
-            practical, and ready for the next stage of your business.
+            We bring the right skills together for each project. Every service is connected through shared planning,
+            clear communication, and a consistent understanding of what the work needs to achieve.
           </p>
         </div>
         <div className="service-list">
-          {services.map((service) => (
-            <article key={service.title}>
-              <span>{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.summary}</p>
+          {homeServices.map(([number, title, summary]) => (
+            <article key={title}>
+              <span>{number}</span>
+              <h3>{title}</h3>
+              <p>{summary}</p>
             </article>
           ))}
         </div>
@@ -82,7 +106,7 @@ export default function Home() {
 
       <section className="work shell" id="work" aria-labelledby="selected-work-heading">
         <div className="section-head"><p id="selected-work-heading">Selected projects</p><a href="/projects">View all projects</a></div>
-        <p className="summary">A focused selection of website and custom system work. Every project uses shared planning, specialist work, testing, and quality review.</p>
+        <p className="summary">A focused selection of website and custom software work completed through shared planning, specialist contribution, testing, and team review.</p>
         <div className="projects-list">
           {selectedProjects.map((project, index) => (
             <article className={`project-preview project-${project.visual}`} key={project.slug}>
@@ -90,9 +114,9 @@ export default function Home() {
                 <p className="case-count">0{index + 1} / 03</p>
                 <p className="tag">{project.category}</p>
                 <h2>{project.title}</h2>
-                <p className="summary">{project.description}</p>
+                <p className="summary">{selectedProjectCopy[project.slug].description}</p>
                 <ul>
-                  {project.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
+                  {selectedProjectCopy[project.slug].capabilities.map((capability) => <li key={capability}>{capability}</li>)}
                 </ul>
                 {project.href ? (
                   <a className="text-link" href={project.href} target="_blank" rel="noreferrer">View live website <span aria-hidden="true">↗</span></a>
@@ -126,16 +150,23 @@ export default function Home() {
           <p className="tag">Team delivery</p>
           <h2 id="team-delivery-heading">Abdul Moiz leads.<br />Specialists deliver.</h2>
           <p>
-            Abdul Moiz stays involved from the first requirement to the final quality review.
-            The team brings focused skills to each stage, so the finished work is useful,
-            checked, and ready to use.
+            Abdul Moiz stays involved from the first discussion to the final quality review. The team contributes
+            focused knowledge at each stage, keeping the project coordinated, carefully checked, and aligned with
+            its intended purpose.
           </p>
           <div className="team-chips"><span>Shared planning</span><span>Specialist work</span><span>Testing</span><span>Quality review</span></div>
         </div>
-        <div className="team-aside"><span>Working together</span><strong>One team.<br />Clear work.<br />Useful outcomes.</strong></div>
+        <div className="team-aside">
+          <span>Working together</span>
+          <strong>One team.<br />Clear work.<br />Useful outcomes.</strong>
+          <p>We combine focused skills with one shared project direction, giving clients a clear experience from the first requirement to final delivery.</p>
+        </div>
       </section>
 
-      <ContactCTA />
+      <ContactCTA
+        description="Tell me what you need, what the finished work should achieve, and any important requirements. I will review the project with the team and respond with a clear next step."
+        linkLabel="Discuss Your Project"
+      />
       <SiteFooter />
     </main>
   );

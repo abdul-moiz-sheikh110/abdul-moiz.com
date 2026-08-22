@@ -752,6 +752,14 @@ h3,
   line-height: 1.04;
 }
 
+.team-aside p {
+  max-width: 34ch;
+  margin: 24px 0 0;
+  color: var(--ink-inverse);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
 .seo-case-study {
   margin-top: clamp(30px, 5vw, 72px);
   padding: clamp(38px, 6vw, 76px);
@@ -1162,6 +1170,10 @@ h3,
     transition-duration: 0.01ms !important;
   }
 
+  .hero-project-link {
+    margin-top: 28px;
+  }
+
   .service-track {
     animation: none;
     transform: none;
@@ -1170,6 +1182,26 @@ h3,
   .heading-letter {
     transition: none;
   }
+}
+
+.hero-project-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 11px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.hero-project-link:hover {
+  background: var(--ink);
+  color: var(--card);
+  transform: translateY(-2px);
 }
 
 .heading-word {
