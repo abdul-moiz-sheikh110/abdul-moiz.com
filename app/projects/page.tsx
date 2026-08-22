@@ -87,6 +87,7 @@ export default function ProjectsPage() {
         ))}
 
         <article className="seo-case-study" data-seo-case-study="true">
+          <p className="seo-project-heading">SEO Project</p>
           <p className="case-count">05 / SEO</p>
           <p className="tag">{seoCaseStudy.sector}</p>
           <h2>{seoCaseStudy.title}</h2>

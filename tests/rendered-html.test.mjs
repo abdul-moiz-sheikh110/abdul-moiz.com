@@ -288,6 +288,14 @@ test("Home presents the complete team-led offer", async () => {
   }
 });
 
+test("SEO case study displays its project heading inside the dark card", async () => {
+  const html = await (await render("/projects")).text();
+  const card = html.match(/<article class="seo-case-study"[\s\S]*?<\/article>/i)?.[0];
+
+  assert.ok(card, "SEO case study card should render");
+  assert.match(card, /<p class="seo-project-heading">SEO Project<\/p>[\s\S]*05 \/ SEO/i);
+});
+
 test("Projects introduction presents the work as delivered by Abdul Moiz and his team", async () => {
   const html = await (await render("/projects")).text();
 

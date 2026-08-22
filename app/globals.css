@@ -789,8 +789,18 @@ h3,
 }
 
 .seo-case-study .case-count,
-.seo-case-study > p:not(.case-count, .tag) {
+.seo-case-study > p:not(.case-count, .tag, .seo-project-heading) {
   color: var(--ink-inverse);
+}
+
+.seo-project-heading {
+  margin: 0 0 30px;
+  color: var(--card);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  font-weight: 620;
+  letter-spacing: -0.045em;
+  line-height: 1;
 }
 
 .seo-case-study .tag {
@@ -801,7 +811,7 @@ h3,
   max-width: 12ch;
 }
 
-.seo-case-study > p:not(.case-count, .tag) {
+.seo-case-study > p:not(.case-count, .tag, .seo-project-heading) {
   max-width: 700px;
   margin: 0;
   font-size: 16px;
