@@ -392,6 +392,16 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
   assert.match(html, /href="https:\/\/www\.fiverr\.com\/"[^>]*>\s*Discuss Your Project/i);
 });
 
+test("Home introduction uses a wide balanced copy column", async () => {
+  const html = await (await render("/")).text();
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+
+  assert.match(html, /class="home-hero-copy"/i);
+  assert.match(stylesheet, /\.hero-bottom > \.home-hero-copy\s*{[^}]*width:\s*100%;[^}]*max-width:\s*980px;/s);
+  assert.match(stylesheet, /\.hero-bottom \.home-hero-copy p\s*{[^}]*max-width:\s*none;/s);
+  assert.match(stylesheet, /\.home-hero-copy \.hero-role\s*{[^}]*white-space:\s*nowrap;/s);
+});
+
 test("Home capability heading stays on exactly two responsive lines", async () => {
   const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
@@ -400,6 +410,8 @@ test("Home capability heading stays on exactly two responsive lines", async () =
   assert.match(source, /<span className="heading-line">for the <em>work ahead\.<\/em><\/span>/);
   assert.match(css, /\.services-intro \.heading-line\s*{[^}]*white-space:\s*nowrap/s);
   assert.match(css, /\.services-intro\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/s);
+  assert.match(css, /\.services-intro\s*{[^}]*gap:\s*clamp\(20px,\s*3vw,\s*32px\);/s);
+  assert.match(css, /\.services-intro p\s*{[^}]*max-width:\s*960px;[^}]*justify-self:\s*start;/s);
 });
 
 test("About explains Abdul Moiz team leadership", async () => {

@@ -219,6 +219,15 @@ h3,
   max-width: 570px;
 }
 
+.hero-bottom > .home-hero-copy {
+  width: 100%;
+  max-width: 980px;
+}
+
+.hero-bottom .home-hero-copy p {
+  max-width: none;
+}
+
 .about-hero-copy {
   display: grid;
   gap: 18px;
@@ -256,6 +265,17 @@ h3,
 
 .hero-bottom .hero-summary {
   font-size: 16px;
+}
+
+.home-hero-copy .hero-role {
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  .home-hero-copy .hero-role {
+    white-space: normal;
+  }
 }
 
 .circle-link {
@@ -326,8 +346,8 @@ h3,
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: end;
-  gap: clamp(42px, 8vw, 104px);
-  margin-bottom: 76px;
+  gap: clamp(20px, 3vw, 32px);
+  margin-bottom: 64px;
 }
 
 .services-intro h2 {
@@ -349,8 +369,8 @@ h3,
 }
 
 .services-intro p {
-  max-width: 430px;
-  justify-self: end;
+  max-width: 960px;
+  justify-self: start;
   margin: 0;
   color: var(--ink-inverse);
   font-size: 15px;

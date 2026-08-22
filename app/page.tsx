@@ -48,7 +48,7 @@ export default function Home() {
         <p className="eyebrow"><span /> Portfolio · Team-led delivery</p>
         <h1>Abdul Moiz<span className="accent-dot">.</span></h1>
         <div className="hero-bottom">
-          <div>
+          <div className="home-hero-copy">
             <p className="hero-role">Websites, software, security, search, and design, delivered by one coordinated team.</p>
             <p className="hero-summary">I work with a collaborative digital team bringing together skills across web development, custom software, cybersecurity, SEO, logo design, and graphic design. We take time to understand each requirement, plan the work clearly, and review every stage together. This keeps the project consistent from the first discussion to final delivery and results in work that is practical, carefully checked, and ready to use.</p>
           </div>
