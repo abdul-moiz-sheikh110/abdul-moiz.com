@@ -313,6 +313,16 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
   assert.match(html, /href="https:\/\/www\.fiverr\.com\/"[^>]*>\s*Discuss Your Project/i);
 });
 
+test("Home capability heading stays on exactly two responsive lines", async () => {
+  const source = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(source, /<span className="heading-line">One coordinated team<\/span><br \/>/);
+  assert.match(source, /<span className="heading-line">for the <em>work ahead\.<\/em><\/span>/);
+  assert.match(css, /\.services-intro \.heading-line\s*{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.services-intro\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/s);
+});
+
 test("About explains Abdul Moiz team leadership", async () => {
   const html = await (await render("/about")).text();
 

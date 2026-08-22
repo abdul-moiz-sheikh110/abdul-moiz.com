@@ -71,7 +71,7 @@ export default function Home() {
       <section className="services shell" aria-labelledby="capabilities-heading">
         <div className="section-head light"><p>Core capabilities</p><span>Practical digital delivery</span></div>
         <div className="services-intro">
-          <h2 id="capabilities-heading">One coordinated team<br />for the <em>work ahead.</em></h2>
+          <h2 id="capabilities-heading"><span className="heading-line">One coordinated team</span><br /><span className="heading-line">for the <em>work ahead.</em></span></h2>
           <p>
             We bring the right skills together for each project. Every service is connected through shared planning,
             clear communication, and a consistent understanding of what the work needs to achieve.

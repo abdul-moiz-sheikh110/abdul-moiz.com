@@ -312,13 +312,21 @@ h3,
 
 .services-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   gap: clamp(42px, 8vw, 104px);
   margin-bottom: 76px;
 }
 
-.services-intro h2,
+.services-intro h2 {
+  font-size: clamp(1.8rem, 7.4vw, 6.1rem);
+}
+
+.services-intro .heading-line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .about-capabilities h2 {
   font-size: clamp(3.3rem, 7vw, 6.1rem);
 }
@@ -330,6 +338,7 @@ h3,
 
 .services-intro p {
   max-width: 430px;
+  justify-self: end;
   margin: 0;
   color: var(--ink-inverse);
   font-size: 15px;
@@ -952,7 +961,10 @@ h3,
     margin-bottom: 52px;
   }
 
-  .services-intro h2,
+  .services-intro h2 {
+    font-size: clamp(1.8rem, 7.4vw, 4.8rem);
+  }
+
   .about-capabilities h2 {
     font-size: clamp(3.05rem, 11vw, 4.8rem);
   }
