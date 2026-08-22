@@ -170,3 +170,20 @@ test("accent text and focus indicators meet WCAG contrast requirements", async (
   assert.ok(contrastRatio(tokens.ink, tokens.orange) >= 3);
   assert.match(stylesheet, /a:focus-visible\s*{[^}]*outline:\s*3px solid #fff;[^}]*box-shadow:\s*0 0 0 6px var\(--ink\);/s);
 });
+
+test("small project labels meet WCAG AA on their actual backgrounds", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+  const tokens = Object.fromEntries(
+    [...stylesheet.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map((match) => [match[1], match[2]]),
+  );
+
+  assert.match(stylesheet, /\.case-count\s*{[^}]*color:\s*var\(--muted\);/s);
+  assert.match(stylesheet, /\.browser-top\s*{[^}]*background:\s*var\(--browser-chrome\);/s);
+  assert.match(stylesheet, /\.browser-top small\s*{[^}]*color:\s*var\(--browser-text\);/s);
+  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy\s*{[^}]*background:\s*linear-gradient\(145deg, var\(--solutions-light\), var\(--solutions-soft\)\);/s);
+  assert.match(stylesheet, /\.solutions-mock \.project-browser-copy p\s*{[^}]*color:\s*var\(--solutions-text\);/s);
+  assert.ok(contrastRatio(tokens.muted, tokens.paper) >= 4.5);
+  assert.ok(contrastRatio(tokens["browser-text"], tokens["browser-chrome"]) >= 4.5);
+  assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-soft"]) >= 4.5);
+  assert.ok(contrastRatio(tokens["solutions-text"], tokens["solutions-light"]) >= 4.5);
+});

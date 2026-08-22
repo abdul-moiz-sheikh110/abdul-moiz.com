@@ -13,6 +13,11 @@
   --violet: #7358d9;
   --green: #3e9a66;
   --dark-line: #383a3d;
+  --browser-chrome: #eff0ef;
+  --browser-text: #595b5e;
+  --solutions-light: #e6f0e6;
+  --solutions-soft: #a7d2b5;
+  --solutions-text: #164d30;
 }
 
 * { box-sizing: border-box; }
@@ -212,7 +217,7 @@ a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 
 .project-preview:nth-child(even) .case-visual, .case-study:nth-of-type(even) .case-visual { order: 1; }
 .case-study { margin-bottom: clamp(76px, 10vw, 140px); }
 
-.case-count { margin: 0 0 20px; color: #9d968c; font-family: var(--font-geist-mono), monospace; font-size: 11px; letter-spacing: 0.08em; }
+.case-count { margin: 0 0 20px; color: var(--muted); font-family: var(--font-geist-mono), monospace; font-size: 11px; letter-spacing: 0.08em; }
 .tag { margin: 0; color: var(--orange-text); font-size: 11px; font-weight: 750; letter-spacing: 0.14em; line-height: 1.45; text-transform: uppercase; }
 
 .project-preview h2, .case-copy h2, .about-grid h2, .team-card h2, .approach-list h2 {
@@ -249,9 +254,9 @@ a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 
 .browser-frame { width: 100%; overflow: hidden; border-radius: 10px; background: #fcfcfc; box-shadow: 0 30px 70px rgb(18 19 22 / 26%); transform: rotate(-1.5deg); }
 .case-teleco .browser-frame, .project-teleco .browser-frame, .case-solutions .browser-frame { transform: rotate(1.5deg); }
 
-.browser-top { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #eff0ef; }
+.browser-top { height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--browser-chrome); }
 .browser-top i { width: 7px; height: 7px; border-radius: 50%; background: #bbbcbf; }
-.browser-top small { overflow: hidden; max-width: 50%; margin-left: auto; color: #77797c; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.browser-top small { overflow: hidden; max-width: 50%; margin-left: auto; color: var(--browser-text); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
 
 .project-browser-copy {
   min-height: clamp(260px, 31vw, 390px);
@@ -263,10 +268,10 @@ a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 
 }
 
 .teleco-mock .project-browser-copy { background: linear-gradient(145deg, #122541, #176c9f); color: white; }
-.solutions-mock .project-browser-copy { background: linear-gradient(145deg, #e6f0e6, #a7d2b5); }
+.solutions-mock .project-browser-copy { background: linear-gradient(145deg, var(--solutions-light), var(--solutions-soft)); }
 .project-browser-copy p { margin: 0 0 12px; color: var(--orange-text); font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; }
 .teleco-mock .project-browser-copy p { color: #77d7e9; }
-.solutions-mock .project-browser-copy p { color: #237045; }
+.solutions-mock .project-browser-copy p { color: var(--solutions-text); }
 
 .project-browser-copy strong { max-width: 8ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.2rem, 4.8vw, 4rem); font-weight: 400; letter-spacing: -0.065em; line-height: 0.94; }
 .lms-mock .browser-frame { transform: rotate(-1deg); }
