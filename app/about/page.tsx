@@ -28,8 +28,9 @@ export default function AboutPage() {
         <h1 id="about-title">A team built around<br />useful <em>outcomes.</em></h1>
         <div className="hero-bottom">
           <p>
-            I am Abdul Moiz, the Team Lead behind a group of digital specialists. I understand each part of the work,
-            stay involved throughout the project, and review the final result with the team.
+            I am Abdul Moiz, Team Lead of a collaborative digital team. I understand every service we offer and how
+            each part contributes to the complete project. I guide the work from planning to final review, while the
+            team works together throughout delivery.
           </p>
         </div>
       </section>
@@ -41,8 +42,9 @@ export default function AboutPage() {
         </div>
         <div>
           <p>
-            We match the work to the right specialist when their knowledge will help move the project forward.
-            Abdul Moiz stays close to the overall direction, making sure every part supports a useful result.
+            Every project is a combined team effort. We plan the direction together, bring the right knowledge into
+            each stage, and review the work as one team. Abdul Moiz keeps every part aligned, clear, and ready for
+            delivery.
           </p>
         </div>
       </section>

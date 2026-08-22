@@ -136,6 +136,7 @@ test("heading letters form a cursor-led ripple wave with accessible fallbacks", 
   assert.match(motionSource, /querySelectorAll\("h1, h2"\)/);
   assert.match(motionSource, /NodeFilter\.SHOW_TEXT/);
   assert.match(motionSource, /heading-letter/);
+  assert.match(motionSource, /heading-word/);
   assert.match(motionSource, /aria-label/);
   assert.match(motionSource, /pointermove/);
   assert.match(motionSource, /wave-center/);
@@ -148,6 +149,7 @@ test("heading letters form a cursor-led ripple wave with accessible fallbacks", 
   assert.match(css, /\.heading-letter\.wave-center\s*{[^}]*color:\s*var\(--accent\)[^}]*transform:[^}]*scale\(/s);
   assert.match(css, /\.heading-letter\.wave-near\s*{[^}]*translateY\(/s);
   assert.match(css, /\.heading-letter\.wave-far\s*{[^}]*translateY\(/s);
+  assert.match(css, /\.heading-word\s*{[^}]*display:\s*inline-block[^}]*white-space:\s*nowrap/s);
   assert.match(css, /@media\s*\(pointer:\s*fine\)[\s\S]*\.heading-letter/s);
   assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.heading-letter/s);
   assert.doesNotMatch(css, /is-heading-active|--heading-rotate-x|--heading-rotate-y/);
@@ -298,6 +300,16 @@ test("About explains Abdul Moiz team leadership", async () => {
   ]) {
     assert.doesNotMatch(html, new RegExp(forbidden, "i"));
   }
+});
+
+test("About presents Abdul Moiz as an involved lead within one team", async () => {
+  const html = await (await render("/about")).text();
+
+  assert.match(html, /I understand every service we offer and how each part contributes to the complete project/i);
+  assert.match(html, /I guide the work from planning to final review, while the team works together throughout delivery/i);
+  assert.match(html, /Every project is a combined team effort/i);
+  assert.match(html, /We plan the direction together, bring the right knowledge into each stage, and review the work as one team/i);
+  assert.match(html, /Abdul Moiz keeps every part aligned, clear, and ready for delivery/i);
 });
 
 test("About keeps the approved team-led section structure", async () => {

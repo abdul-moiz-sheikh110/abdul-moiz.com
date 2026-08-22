@@ -19,16 +19,23 @@ export function HeadingMotion() {
 
       textNodes.forEach((textNode) => {
         const fragment = document.createDocumentFragment();
-        for (const character of textNode.data) {
-          if (/\s/.test(character)) {
-            fragment.append(character);
-          } else {
+        for (const token of textNode.data.split(/(\s+)/)) {
+          if (!token) continue;
+          if (/^\s+$/.test(token)) {
+            fragment.append(token);
+            continue;
+          }
+
+          const word = document.createElement("span");
+          word.className = "heading-word";
+          for (const character of token) {
             const letter = document.createElement("span");
             letter.className = "heading-letter";
             letter.setAttribute("aria-hidden", "true");
             letter.textContent = character;
-            fragment.append(letter);
+            word.append(letter);
           }
+          fragment.append(word);
         }
         textNode.replaceWith(fragment);
       });
@@ -77,6 +84,7 @@ export function HeadingMotion() {
       document.removeEventListener("pointermove", moveWave);
       document.removeEventListener("pointerleave", clearWave);
       document.querySelectorAll<HTMLElement>("h1[data-letters-enhanced], h2[data-letters-enhanced]").forEach((heading) => {
+        heading.querySelectorAll(".heading-word").forEach((word) => word.replaceWith(...Array.from(word.childNodes)));
         heading.querySelectorAll(".heading-letter").forEach((letter) => letter.replaceWith(letter.textContent ?? ""));
         heading.normalize();
         heading.removeAttribute("aria-label");

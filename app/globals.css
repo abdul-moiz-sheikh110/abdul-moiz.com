@@ -1167,6 +1167,11 @@ h3,
   }
 }
 
+.heading-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .heading-letter {
   display: inline-block;
   transform-origin: center bottom;
