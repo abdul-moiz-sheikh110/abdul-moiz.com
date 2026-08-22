@@ -26,13 +26,45 @@ test("renders Home, About, and Projects routes with Abdul Moiz ownership metadat
   }
 });
 
-test("every route identifies Abdul Moiz and links all routes", async () => {
+test("Home metadata describes Abdul Moiz team-led digital services", async () => {
+  const html = await (await render("/")).text();
+  assert.match(html, /<title>Abdul Moiz \| Team-Led Digital Services<\/title>/i);
+
+  for (const service of [
+    "Web development",
+    "Custom software development",
+    "Cybersecurity",
+    "SEO",
+    "Logo design",
+    "Graphic design",
+  ]) {
+    assert.match(html, new RegExp(service, "i"));
+  }
+});
+
+test("every route presents Abdul Moiz as Team Lead with the shared navigation", async () => {
   for (const route of ["/", "/about", "/projects"]) {
     const html = await (await render(route)).text();
     assert.match(html, /Abdul Moiz/);
+    assert.match(html, /Team Lead/i);
+    assert.match(html, /collaborative team/i);
     assert.match(html, /href="\/"/);
     assert.match(html, /href="\/about"/);
     assert.match(html, /href="\/projects"/);
+    assert.match(html, /href="\/#contact"/);
+
+    for (const forbidden of [
+      "marketing",
+      "client communication",
+      "Fiverr account support",
+      "account management",
+      "Shabbir",
+      "Arham",
+      "Laiba",
+      "Daniyal",
+    ]) {
+      assert.doesNotMatch(html, new RegExp(forbidden, "i"));
+    }
   }
 });
 

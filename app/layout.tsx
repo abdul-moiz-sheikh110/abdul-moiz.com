@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abdul Moiz | Web Development, Cybersecurity & SEO",
-  description: "Abdul Moiz supports custom systems and team-supported delivery across web development, cybersecurity, and SEO.",
+  title: "Abdul Moiz | Team-Led Digital Services",
+  description: "Abdul Moiz leads a collaborative team offering web development, custom software development, cybersecurity, SEO, logo design, and graphic design.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
