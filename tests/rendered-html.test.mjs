@@ -13,10 +13,14 @@ async function render(pathname = "/") {
   );
 }
 
-test("renders Home, About, and Projects routes", async () => {
+test("renders Home, About, and Projects routes with Abdul Moiz ownership metadata", async () => {
   for (const route of ["/", "/about", "/projects"]) {
     const response = await render(route);
     assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, /Abdul Moiz/);
+    assert.match(html, /<title>[^<]*Abdul Moiz[^<]*<\/title>/i);
+    assert.match(html, /<meta name="description" content="[^"]*Abdul Moiz[^"]*"\/>/i);
   }
 });
 
@@ -30,18 +34,15 @@ test("projects route contains every verified project and link", async () => {
   }
 });
 
-test("renders the professional 110 Solutions portfolio", async () => {
+test("renders the professional Abdul Moiz portfolio", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
 
-  assert.match(html, /<title>Web Design &amp; Development Studio \| Portfolio<\/title>/i);
-  assert.match(html, /110 Solutions/);
-  assert.match(html, /Crest View Academy/);
-  assert.match(html, /Teleco Solutions/);
-  assert.match(html, /School LMS/);
-  assert.match(html, /UI\/UX design/);
+  assert.match(html, /<title>[^<]*Abdul Moiz[^<]*<\/title>/i);
+  assert.match(html, /<meta name="description" content="[^"]*Abdul Moiz[^"]*"\/>/i);
+  assert.match(html, /Abdul Moiz/);
   assert.match(html, /Start a Fiverr conversation/);
 });
 
