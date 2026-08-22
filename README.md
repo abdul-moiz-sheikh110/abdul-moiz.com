@@ -1,24 +1,31 @@
-# 110 Solutions Portfolio
+# Abdul Moiz Portfolio
 
-A professional, responsive portfolio website prepared for Fiverr client acquisition.
+A professional, responsive portfolio website for Abdul Moiz, prepared to support Fiverr client conversations and team-supported digital delivery.
 
-## Featured work
+## Routes
 
-- Crest View Academy education website
-- Teleco Solutions corporate ICT website
-- School LMS administration system
+- Home (`/`): Abdul Moiz positioning, selected work, and the five core capabilities.
+- About (`/about`): professional focus, working approach, and team capabilities.
+- Projects (`/projects`): the complete project archive with verified live website links.
 
-## Site sections
+## Capabilities
 
-- Positioning-led hero section
-- Three detailed project case studies
-- Website, development, systems, and support services
-- Team delivery model
-- Fiverr-focused contact call to action
+- Web development
+- Cybersecurity
+- SEO
+- Custom systems
+- Team delivery
+
+## Featured projects
+
+- Crest View Academy: [crestviewacademy.pk](https://crestviewacademy.pk/)
+- Teleco Solutions: [teleco-solutions.com](https://www.teleco-solutions.com/)
+- 110 Solutions: [110solutions.com.au](https://www.110solutions.com.au/)
+- School LMS: custom school management system, presented with its supplied dashboard image and no unverified public URL
 
 ## Before public launch
 
-Replace the generic Fiverr URL in `app/page.tsx` with the final 110 Solutions Fiverr profile URL.
+Replace the generic Fiverr link in `app/components/ContactCTA.tsx` with Abdul Moiz's final Fiverr profile URL.
 
 ## Local commands
 
