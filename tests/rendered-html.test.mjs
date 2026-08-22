@@ -63,6 +63,14 @@ test("renders the professional Abdul Moiz portfolio", async () => {
   assert.match(html, /Start a Fiverr conversation/);
 });
 
+test("home positions Abdul across every requested capability", async () => {
+  const html = await (await render("/")).text();
+  for (const phrase of ["Web development", "Cybersecurity", "SEO", "Custom systems", "Team delivery"]) {
+    assert.match(html, new RegExp(phrase, "i"));
+  }
+  assert.match(html, /href="\/projects"/);
+});
+
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();
