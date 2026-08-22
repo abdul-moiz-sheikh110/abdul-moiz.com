@@ -155,6 +155,17 @@ test("heading letters form a cursor-led ripple wave with accessible fallbacks", 
   assert.doesNotMatch(css, /is-heading-active|--heading-rotate-x|--heading-rotate-y/);
 });
 
+test("route navigation resets retained scroll without overriding anchor links", async () => {
+  const scrollSource = await readFile(new URL("../app/components/ScrollToTop.tsx", import.meta.url), "utf8");
+  const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+
+  assert.match(scrollSource, /usePathname/);
+  assert.match(scrollSource, /window\.location\.hash/);
+  assert.match(scrollSource, /window\.scrollTo\(0, 0\)/);
+  assert.match(scrollSource, /\[pathname\]/);
+  assert.match(layoutSource, /<ScrollToTop\s*\/>/);
+});
+
 test("Home includes a continuously moving service strip", async () => {
   const html = await (await render("/" )).text();
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");

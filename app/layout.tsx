@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, IBM_Plex_Mono, Spline_Sans } from "next/font/google";
 import { CustomCursor } from "./components/CustomCursor";
 import { HeadingMotion } from "./components/HeadingMotion";
+import { ScrollToTop } from "./components/ScrollToTop";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -41,6 +42,7 @@ export default function RootLayout({
       >
         <CustomCursor />
         <HeadingMotion />
+        <ScrollToTop />
         {children}
       </body>
     </html>
