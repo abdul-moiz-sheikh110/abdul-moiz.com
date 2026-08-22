@@ -32,6 +32,18 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="service-marquee" aria-label="Services we provide">
+        <div className="service-track">
+          {[false, true].map((duplicate) => (
+            <div className="service-marquee-group" aria-hidden={duplicate || undefined} key={String(duplicate)}>
+              {services.map((service) => (
+                <span key={service.title}>{service.title}<i aria-hidden="true">•</i></span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section className="services shell" aria-labelledby="capabilities-heading">
         <div className="section-head light"><p>Core capabilities</p><span>Practical digital delivery</span></div>
         <div className="services-intro">

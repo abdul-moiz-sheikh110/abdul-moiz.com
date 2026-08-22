@@ -9,7 +9,6 @@
   --accent: #14796f;
   --accent-dark: #0d5f59;
   --accent-light: #9bc9c2;
-  --cursor-glow: #c99a3d;
   --line: #c9d0ca;
   --stone-soft: #d7ded9;
   --dark-line: #39515a;
@@ -1157,6 +1156,80 @@ h3,
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .service-track {
+    animation: none;
+    transform: none;
+  }
+
+  h1,
+  h2,
+  h1.is-heading-active,
+  h2.is-heading-active {
+    transform: none;
+  }
+}
+
+h1,
+h2 {
+  --heading-rotate-x: 0deg;
+  --heading-rotate-y: 0deg;
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+h1.is-heading-active,
+h2.is-heading-active {
+  transform: perspective(900px) rotateX(var(--heading-rotate-x)) rotateY(var(--heading-rotate-y)) translateY(-2px);
+  will-change: transform;
+}
+
+.service-marquee {
+  width: 100%;
+  overflow: hidden;
+  border-block: 1px solid var(--dark-line);
+  background: var(--ink);
+  color: var(--card);
+}
+
+.service-track {
+  display: flex;
+  width: max-content;
+  animation: service-marquee 28s linear infinite;
+}
+
+.service-marquee-group {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.service-marquee span {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding: 18px 28px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.service-marquee i {
+  color: var(--accent-light);
+  font-style: normal;
+}
+
+.service-marquee:hover .service-track {
+  animation-play-state: paused;
+}
+
+@keyframes service-marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .custom-cursor {
@@ -1175,7 +1248,7 @@ h3,
   border-radius: 999px;
   opacity: 0;
   transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
-  transition: opacity 150ms ease, width 180ms ease, height 180ms ease, box-shadow 180ms ease;
+  transition: opacity 150ms ease, width 180ms ease, height 180ms ease;
   will-change: transform;
 }
 
@@ -1183,7 +1256,6 @@ h3,
   width: 8px;
   height: 8px;
   background: var(--accent);
-  box-shadow: 0 0 8px 3px color-mix(in srgb, var(--cursor-glow) 58%, transparent);
 }
 
 .custom-cursor-dot.is-visible {
@@ -1193,7 +1265,6 @@ h3,
 .custom-cursor-dot.is-active {
   width: 11px;
   height: 11px;
-  box-shadow: 0 0 15px 6px color-mix(in srgb, var(--cursor-glow) 72%, transparent);
 }
 
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {

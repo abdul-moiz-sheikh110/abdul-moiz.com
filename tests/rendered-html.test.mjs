@@ -121,12 +121,40 @@ test("custom cursor is progressive and respects user input preferences", async (
   assert.match(cursorSource, /aria-hidden="true"/);
   assert.match(layoutSource, /<CustomCursor\s*\/>/);
   assert.match(css, /\.custom-cursor-dot/);
-  assert.match(css, /--cursor-glow:\s*#c99a3d/i);
-  assert.match(css, /box-shadow:\s*0 0[^;]*var\(--cursor-glow\)/);
+  assert.doesNotMatch(css, /--cursor-glow|\.custom-cursor-dot[^}]*box-shadow/is);
   assert.doesNotMatch(cursorSource, /custom-cursor-ring/);
   assert.doesNotMatch(css, /\.custom-cursor-ring/);
   assert.match(css, /\.cursor-enhanced/);
   assert.match(css, /@media\s*\(pointer:\s*coarse\)/);
+});
+
+test("headings respond to pointer movement with accessible fallbacks", async () => {
+  const motionSource = await readFile(new URL("../app/components/HeadingMotion.tsx", import.meta.url), "utf8");
+  const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(motionSource, /h1, h2/);
+  assert.match(motionSource, /pointermove/);
+  assert.match(motionSource, /getBoundingClientRect/);
+  assert.match(motionSource, /prefers-reduced-motion:\s*reduce/);
+  assert.match(motionSource, /pointer:\s*fine/);
+  assert.match(layoutSource, /<HeadingMotion\s*\/>/);
+  assert.match(css, /\.is-heading-active/);
+  assert.match(css, /--heading-rotate-x/);
+  assert.match(css, /--heading-rotate-y/);
+});
+
+test("Home includes a continuously moving service strip", async () => {
+  const html = await (await render("/" )).text();
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(html, /class="service-marquee"/);
+  for (const service of ["Web development", "Custom software development", "Cybersecurity", "SEO", "Logo design", "Graphic design"]) {
+    assert.match(html, new RegExp(service));
+  }
+  assert.match(css, /@keyframes\s+service-marquee/);
+  assert.match(css, /\.service-marquee:hover[^{]*[\s\S]*animation-play-state:\s*paused/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.service-track[^{]*{[^}]*animation:\s*none/s);
 });
 
 test("110 Solutions is never used as the site owner", async () => {
