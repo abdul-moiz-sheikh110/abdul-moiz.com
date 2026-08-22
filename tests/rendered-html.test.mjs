@@ -128,20 +128,22 @@ test("custom cursor is progressive and respects user input preferences", async (
   assert.match(css, /@media\s*\(pointer:\s*coarse\)/);
 });
 
-test("headings respond to pointer movement with accessible fallbacks", async () => {
+test("heading letters grow and turn teal with accessible fallbacks", async () => {
   const motionSource = await readFile(new URL("../app/components/HeadingMotion.tsx", import.meta.url), "utf8");
   const layoutSource = await readFile(new URL("../app/layout.tsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.match(motionSource, /h1, h2/);
-  assert.match(motionSource, /pointermove/);
-  assert.match(motionSource, /getBoundingClientRect/);
+  assert.match(motionSource, /querySelectorAll\("h1, h2"\)/);
+  assert.match(motionSource, /NodeFilter\.SHOW_TEXT/);
+  assert.match(motionSource, /heading-letter/);
+  assert.match(motionSource, /aria-label/);
   assert.match(motionSource, /prefers-reduced-motion:\s*reduce/);
   assert.match(motionSource, /pointer:\s*fine/);
   assert.match(layoutSource, /<HeadingMotion\s*\/>/);
-  assert.match(css, /\.is-heading-active/);
-  assert.match(css, /--heading-rotate-x/);
-  assert.match(css, /--heading-rotate-y/);
+  assert.match(css, /\.heading-letter:hover\s*{[^}]*color:\s*var\(--accent\)[^}]*transform:\s*scale\(/s);
+  assert.match(css, /@media\s*\(pointer:\s*fine\)[\s\S]*\.heading-letter/s);
+  assert.match(css, /prefers-reduced-motion:\s*reduce[\s\S]*\.heading-letter/s);
+  assert.doesNotMatch(css, /is-heading-active|--heading-rotate-x|--heading-rotate-y/);
 });
 
 test("Home includes a continuously moving service strip", async () => {

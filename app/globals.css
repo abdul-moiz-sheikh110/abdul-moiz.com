@@ -1162,26 +1162,22 @@ h3,
     transform: none;
   }
 
-  h1,
-  h2,
-  h1.is-heading-active,
-  h2.is-heading-active {
-    transform: none;
+  .heading-letter {
+    transition: none;
   }
 }
 
-h1,
-h2 {
-  --heading-rotate-x: 0deg;
-  --heading-rotate-y: 0deg;
-  transform-origin: center;
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+.heading-letter {
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: color 180ms ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-h1.is-heading-active,
-h2.is-heading-active {
-  transform: perspective(900px) rotateX(var(--heading-rotate-x)) rotateY(var(--heading-rotate-y)) translateY(-2px);
-  will-change: transform;
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .heading-letter:hover {
+    color: var(--accent);
+    transform: scale(1.12);
+  }
 }
 
 .service-marquee {

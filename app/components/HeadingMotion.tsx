@@ -8,36 +8,50 @@ export function HeadingMotion() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!finePointer.matches || reducedMotion.matches) return;
 
-    let activeHeading: HTMLElement | null = null;
-    const resetHeading = () => {
-      if (!activeHeading) return;
-      activeHeading.classList.remove("is-heading-active");
-      activeHeading.style.removeProperty("--heading-rotate-x");
-      activeHeading.style.removeProperty("--heading-rotate-y");
-      activeHeading = null;
+    const enhanceHeading = (heading: HTMLElement) => {
+      if (heading.dataset.lettersEnhanced === "true") return;
+      heading.dataset.lettersEnhanced = "true";
+      heading.setAttribute("aria-label", heading.textContent ?? "");
+
+      const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      const textNodes: Text[] = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
+
+      textNodes.forEach((textNode) => {
+        const fragment = document.createDocumentFragment();
+        for (const character of textNode.data) {
+          if (/\s/.test(character)) {
+            fragment.append(character);
+          } else {
+            const letter = document.createElement("span");
+            letter.className = "heading-letter";
+            letter.setAttribute("aria-hidden", "true");
+            letter.textContent = character;
+            fragment.append(letter);
+          }
+        }
+        textNode.replaceWith(fragment);
+      });
     };
-    const moveHeading = (event: PointerEvent) => {
-      const target = event.target instanceof Element ? event.target : null;
-      const heading = target?.closest("h1, h2") as HTMLElement | null;
-      if (!heading) return resetHeading();
-      if (activeHeading !== heading) {
-        resetHeading();
-        activeHeading = heading;
-        heading.classList.add("is-heading-active");
-      }
-      const bounds = heading.getBoundingClientRect();
-      const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-      const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-      heading.style.setProperty("--heading-rotate-x", `${(-y * 2.4).toFixed(2)}deg`);
-      heading.style.setProperty("--heading-rotate-y", `${(x * 3.2).toFixed(2)}deg`);
+
+    const enhanceAllHeadings = () => {
+      document.querySelectorAll("h1, h2").forEach((heading) => enhanceHeading(heading as HTMLElement));
     };
-    document.addEventListener("pointermove", moveHeading, { passive: true });
-    document.addEventListener("pointerleave", resetHeading);
+
+    enhanceAllHeadings();
+    const observer = new MutationObserver(enhanceAllHeadings);
+    observer.observe(document.body, { childList: true, subtree: true });
+
     return () => {
-      resetHeading();
-      document.removeEventListener("pointermove", moveHeading);
-      document.removeEventListener("pointerleave", resetHeading);
+      observer.disconnect();
+      document.querySelectorAll<HTMLElement>("h1[data-letters-enhanced], h2[data-letters-enhanced]").forEach((heading) => {
+        heading.querySelectorAll(".heading-letter").forEach((letter) => letter.replaceWith(letter.textContent ?? ""));
+        heading.normalize();
+        heading.removeAttribute("aria-label");
+        delete heading.dataset.lettersEnhanced;
+      });
     };
   }, []);
+
   return null;
 }
