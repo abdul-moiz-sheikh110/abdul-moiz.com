@@ -1,35 +1,43 @@
-# Abdul Moiz Portfolio
+# Abdul Moiz, Team-Led Portfolio
 
-A professional, responsive portfolio website for Abdul Moiz, prepared to support Fiverr client conversations and team-supported digital delivery.
+This portfolio presents Abdul Moiz as Team Lead for a collaborative digital team. Abdul stays involved from planning through quality review, while the appropriate specialists contribute to the delivery.
 
 ## Routes
 
-- Home (`/`): Abdul Moiz positioning, selected work, and the five core capabilities.
-- About (`/about`): professional focus, working approach, and team capabilities.
-- Projects (`/projects`): the complete project archive with verified live website links.
+- Home (`/`): team-led positioning, the six services, selected project previews, the delivery process, and the Fiverr call to action.
+- About (`/about`): Abdul Moiz's Team Lead and quality-review role, plus the team's coordinated delivery approach.
+- Projects (`/projects`): four development projects and one anonymized team SEO case study.
 
-## Capabilities
+## Services
 
 - Web development
+- Custom software development
 - Cybersecurity
 - SEO
-- Custom systems
-- Team delivery
+- Logo design
+- Graphic design
 
-## Featured projects
+## Projects and public links
 
-- Crest View Academy: [crestviewacademy.pk](https://crestviewacademy.pk/)
-- Teleco Solutions: [teleco-solutions.com](https://www.teleco-solutions.com/)
-- 110 Solutions: [110solutions.com.au](https://www.110solutions.com.au/)
-- School LMS: custom school management system, presented with its supplied dashboard image and no unverified public URL
+- Crest View Academy: [https://crestviewacademy.pk/](https://crestviewacademy.pk/)
+- Teleco Solutions: [https://www.teleco-solutions.com/](https://www.teleco-solutions.com/)
+- 110 Solutions: [https://www.110solutions.com.au/](https://www.110solutions.com.au/)
+- School LMS: a custom school management system shown with the supplied dashboard image. It has no public URL.
 
-## Before public launch
+The Projects route also includes one verified, anonymized team SEO case study for a software company. Its displayed figures are 3.51K clicks, 1.78M search appearances, an average position of 15.5 improved from 23, and 3 qualified leads each month.
 
-Replace the generic Fiverr link in `app/components/ContactCTA.tsx` with Abdul Moiz's final Fiverr profile URL.
+## Fiverr link status
+
+The call to action currently uses the generic [Fiverr URL](https://www.fiverr.com/). Replace it only when the final Abdul Moiz profile URL is supplied.
+
+## Publishing approval
+
+Local validation and a refreshed deployment archive do not authorize publishing. Publish through Sites only after explicit approval.
 
 ## Local commands
 
 ```bash
 npm run dev
+npm run lint
 npm test
 ```
