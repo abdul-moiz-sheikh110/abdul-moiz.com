@@ -654,6 +654,7 @@ h3,
 
 .approach-list {
   padding: clamp(80px, 10vw, 136px) 0;
+  background: var(--paper);
 }
 
 .approach-list > div:last-child {
