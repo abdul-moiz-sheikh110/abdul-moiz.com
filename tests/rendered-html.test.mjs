@@ -296,6 +296,15 @@ test("SEO case study displays its project heading inside the dark card", async (
   assert.match(card, /<p class="seo-project-heading">SEO Project<\/p>[\s\S]*05 \/ SEO/i);
 });
 
+test("SEO case study title renders as the approved three lines", async () => {
+  const html = await (await render("/projects")).text();
+
+  assert.match(
+    html,
+    /<h2[^>]*><span class="seo-title-line">Turning search visibility<\/span><br\/><span class="seo-title-line">into a steady<\/span><br\/><span class="seo-title-line">lead source<\/span><\/h2>/i,
+  );
+});
+
 test("Projects introduction presents the work as delivered by Abdul Moiz and his team", async () => {
   const html = await (await render("/projects")).text();
 

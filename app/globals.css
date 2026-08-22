@@ -808,7 +808,12 @@ h3,
 }
 
 .seo-case-study h2 {
-  max-width: 12ch;
+  max-width: none;
+}
+
+.seo-title-line {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .seo-case-study > p:not(.case-count, .tag, .seo-project-heading) {
@@ -1156,6 +1161,10 @@ h3,
   .team-card h2,
   .seo-case-study h2 {
     font-size: clamp(2.45rem, 13vw, 3.45rem);
+  }
+
+  .seo-title-line {
+    white-space: normal;
   }
 
   .case-visual {

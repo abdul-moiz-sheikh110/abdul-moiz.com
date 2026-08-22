@@ -90,7 +90,11 @@ export default function ProjectsPage() {
           <p className="seo-project-heading">SEO Project</p>
           <p className="case-count">05 / SEO</p>
           <p className="tag">{seoCaseStudy.sector}</p>
-          <h2>{seoCaseStudy.title}</h2>
+          <h2 aria-label={seoCaseStudy.title}>
+            <span className="seo-title-line">Turning search visibility</span><br />
+            <span className="seo-title-line">into a steady</span><br />
+            <span className="seo-title-line">lead source</span>
+          </h2>
           <p>{seoCaseStudy.summary}</p>
           <div className="seo-metrics">
             {seoCaseStudy.metrics.map((metric) => (
