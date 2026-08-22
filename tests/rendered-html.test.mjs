@@ -114,6 +114,25 @@ test("projects route contains every verified project and link", async () => {
   }
 });
 
+test("Projects includes one verified SEO case study", async () => {
+  const html = await (await render("/projects")).text();
+
+  for (const title of ["Crest View Academy", "Teleco Solutions", "110 Solutions", "School LMS"]) {
+    assert.match(html, new RegExp(title));
+  }
+  for (const href of ["https://crestviewacademy.pk/", "https://www.teleco-solutions.com/", "https://www.110solutions.com.au/"]) {
+    assert.match(html, new RegExp(href.replaceAll(".", "\\.")));
+  }
+  assert.match(html, /src="\/school-lms-dashboard.png"/);
+
+  const seoCaseStudies = html.match(/<article\b[^>]*data-seo-case-study="true"[^>]*>[\s\S]*?<\/article>/gi) ?? [];
+  assert.equal(seoCaseStudies.length, 1, "Projects should render exactly one SEO case study");
+
+  for (const metric of ["3.51K", "1.78M", "15.5", "3 qualified leads each month"]) {
+    assert.match(seoCaseStudies[0], new RegExp(metric.replaceAll(".", "\\.")));
+  }
+});
+
 test("LMS project uses its supplied image without an invented website URL", async () => {
   const html = await (await render("/projects")).text();
   assert.match(html, /src="\/school-lms-dashboard.png"/);

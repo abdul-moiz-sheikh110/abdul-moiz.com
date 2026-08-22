@@ -18,7 +18,7 @@ export const projects: Project[] = [
     description:
       "A warm, clear school website designed to help parents understand the academy's programmes, values, and admissions journey.",
     capabilities: [
-      "Responsive marketing website",
+      "Responsive website design",
       "Programme and admissions content",
       "Mobile-friendly enquiry journey",
     ],

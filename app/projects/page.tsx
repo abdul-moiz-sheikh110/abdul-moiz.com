@@ -4,6 +4,7 @@ import { ContactCTA } from "../components/ContactCTA";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { projects, type Project } from "../data/projects";
+import { seoCaseStudy } from "../data/seoCaseStudy";
 
 export const metadata: Metadata = {
   title: "Projects | Abdul Moiz",
@@ -81,6 +82,22 @@ export default function ProjectsPage() {
             <ProjectVisual project={project} />
           </article>
         ))}
+
+        <article className="seo-case-study" data-seo-case-study="true">
+          <p className="case-count">05 / SEO</p>
+          <p className="tag">{seoCaseStudy.sector}</p>
+          <h2>{seoCaseStudy.title}</h2>
+          <p>{seoCaseStudy.summary}</p>
+          <div className="seo-metrics">
+            {seoCaseStudy.metrics.map((metric) => (
+              <div key={metric.label}>
+                <strong>{metric.value}</strong>
+                <span>{metric.label}</span>
+                <small>{metric.context}</small>
+              </div>
+            ))}
+          </div>
+        </article>
       </section>
 
       <ContactCTA />
