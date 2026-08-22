@@ -120,8 +120,11 @@ test("custom cursor is progressive and respects user input preferences", async (
   assert.match(cursorSource, /a, button, \[data-cursor\]/);
   assert.match(cursorSource, /aria-hidden="true"/);
   assert.match(layoutSource, /<CustomCursor\s*\/>/);
-  assert.match(css, /\.custom-cursor-ring/);
   assert.match(css, /\.custom-cursor-dot/);
+  assert.match(css, /--cursor-glow:\s*#c99a3d/i);
+  assert.match(css, /box-shadow:\s*0 0[^;]*var\(--cursor-glow\)/);
+  assert.doesNotMatch(cursorSource, /custom-cursor-ring/);
+  assert.doesNotMatch(css, /\.custom-cursor-ring/);
   assert.match(css, /\.cursor-enhanced/);
   assert.match(css, /@media\s*\(pointer:\s*coarse\)/);
 });
@@ -376,7 +379,7 @@ test("editorial typography and original theme remain accessible", async () => {
     assert.match(stylesheet, new RegExp(token));
   }
 
-  assert.doesNotMatch(stylesheet, /#d4451f|--orange\b|neon|glow|backdrop-filter/i);
+  assert.doesNotMatch(stylesheet, /#d4451f|--orange\b|neon|backdrop-filter/i);
   assert.match(stylesheet, /body\s*{[^}]*font-family:\s*var\(--font-body\);/s);
   assert.match(stylesheet, /h1[\s\S]*font-family:\s*var\(--font-display\);/s);
   assert.match(stylesheet, /\.eyebrow[\s\S]*font-family:\s*var\(--font-mono\);/s);
