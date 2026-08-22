@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Web Design & Development Studio | Portfolio",
-  description: "A professional web design and development team building high-quality websites and business systems.",
+  title: "Abdul Moiz | Web Development, Cybersecurity & SEO",
+  description: "Abdul Moiz supports custom systems and team-supported delivery across web development, cybersecurity, and SEO.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

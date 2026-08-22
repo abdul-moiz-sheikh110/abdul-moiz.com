@@ -24,6 +24,23 @@ test("renders Home, About, and Projects routes with Abdul Moiz ownership metadat
   }
 });
 
+test("every route identifies Abdul Moiz and links all routes", async () => {
+  for (const route of ["/", "/about", "/projects"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /Abdul Moiz/);
+    assert.match(html, /href="\/"/);
+    assert.match(html, /href="\/about"/);
+    assert.match(html, /href="\/projects"/);
+  }
+});
+
+test("110 Solutions is never used as the site owner", async () => {
+  for (const route of ["/", "/about"]) {
+    const html = await (await render(route)).text();
+    assert.doesNotMatch(html, /class="brand"[^>]*>[\s\S]*?110 Solutions/);
+  }
+});
+
 test("projects route contains every verified project and link", async () => {
   const html = await (await render("/projects")).text();
   for (const title of ["Crest View Academy", "Teleco Solutions", "110 Solutions", "School LMS"]) {
