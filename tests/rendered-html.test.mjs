@@ -142,3 +142,31 @@ test("visible HTML, metadata, and source copy contain no em dashes", async () =>
     assert.doesNotMatch(source, emDash, `${path.relative(appDirectory, sourceFile)} contains an em dash`);
   }
 });
+
+function relativeLuminance(hex) {
+  const channels = hex.match(/[a-f\d]{2}/gi).map((channel) => {
+    const value = Number.parseInt(channel, 16) / 255;
+    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function contrastRatio(first, second) {
+  const [lighter, darker] = [relativeLuminance(first), relativeLuminance(second)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+test("accent text and focus indicators meet WCAG contrast requirements", async () => {
+  const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");
+  const tokens = Object.fromEntries(
+    [...stylesheet.matchAll(/--([\w-]+):\s*(#[a-f\d]{6})/gi)].map((match) => [match[1], match[2]]),
+  );
+
+  assert.match(stylesheet, /--orange-text:\s*#[a-f\d]{6}/i);
+  assert.ok(contrastRatio(tokens["orange-text"], tokens.paper) >= 4.5);
+  assert.ok(contrastRatio(tokens.ink, tokens.orange) >= 4.5);
+  assert.ok(contrastRatio("#ffffff", tokens.ink) >= 3);
+  assert.ok(contrastRatio(tokens.ink, tokens.paper) >= 3);
+  assert.ok(contrastRatio(tokens.ink, tokens.orange) >= 3);
+  assert.match(stylesheet, /a:focus-visible\s*{[^}]*outline:\s*3px solid #fff;[^}]*box-shadow:\s*0 0 0 6px var\(--ink\);/s);
+});
