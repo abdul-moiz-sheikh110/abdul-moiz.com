@@ -224,6 +224,18 @@ h3,
   gap: 18px;
 }
 
+.hero-bottom > .about-hero-copy {
+  width: 100%;
+  max-width: none;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(320px, 1.3fr);
+  align-items: start;
+  gap: clamp(36px, 7vw, 88px);
+}
+
+.about-hero-copy p {
+  max-width: none;
+}
+
 .hero-bottom p {
   max-width: 530px;
   margin: 0;
@@ -387,7 +399,7 @@ h3,
 }
 
 .work {
-  padding: clamp(78px, 9vw, 122px) 0;
+  padding: clamp(68px, 7vw, 96px) 0;
 }
 
 .work > .summary {
@@ -404,7 +416,7 @@ h3,
 
 .projects-list {
   display: grid;
-  gap: clamp(72px, 9vw, 114px);
+  gap: clamp(56px, 7vw, 88px);
 }
 
 .project-preview,
@@ -431,7 +443,7 @@ h3,
 }
 
 .case-study {
-  margin-bottom: clamp(82px, 11vw, 148px);
+  margin-bottom: clamp(64px, 8vw, 104px);
 }
 
 .case-count {
@@ -619,8 +631,8 @@ h3,
   display: grid;
   grid-template-columns: minmax(270px, 0.9fr) minmax(300px, 0.85fr);
   justify-content: space-between;
-  gap: clamp(42px, 12vw, 170px);
-  padding: clamp(76px, 10vw, 136px) 0;
+  gap: clamp(40px, 7vw, 88px);
+  padding: clamp(64px, 8vw, 100px) 0;
   border-top: 1px solid var(--line);
 }
 
@@ -691,7 +703,7 @@ h3,
 }
 
 .about-grid > div:last-child {
-  max-width: 550px;
+  max-width: 620px;
   color: var(--ink-soft);
   font-size: 17px;
   line-height: 1.75;
@@ -744,7 +756,7 @@ h3,
 }
 
 .approach-list {
-  padding: clamp(80px, 10vw, 136px) 0;
+  padding: clamp(68px, 8vw, 104px) 0;
   background: var(--paper);
 }
 
@@ -1031,6 +1043,11 @@ h3,
     font-size: 16px;
   }
 
+  .hero-bottom > .about-hero-copy {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   .section-head,
   .section-head.light {
     margin-bottom: 40px;
@@ -1041,6 +1058,7 @@ h3,
   }
 
   .services-intro,
+  .about-hero-copy,
   .project-preview,
   .case-study,
   .about-grid,
@@ -1083,12 +1101,12 @@ h3,
   }
 
   .projects-list {
-    gap: 78px;
+    gap: 56px;
   }
 
   .case-study {
     gap: 34px;
-    margin-bottom: 84px;
+    margin-bottom: 64px;
   }
 
   .case-visual {
@@ -1102,7 +1120,7 @@ h3,
 
   .about-grid {
     gap: 34px;
-    padding: 80px 0;
+    padding: 64px 0;
   }
 
   .professional-background {
