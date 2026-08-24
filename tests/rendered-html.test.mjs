@@ -673,3 +673,17 @@ test("team service and SEO data stay within the approved public scope", async ()
   assert.match(seoSource, /3 qualified leads each month/);
   assert.doesNotMatch(`${servicesSource}\n${seoSource}`, /Shabbir|Arham|Laiba|Daniyal/);
 });
+
+test("Vercel uses the supported Vinext Nitro deployment output", async () => {
+  const viteConfig = await readFile(new URL("../vite.config.ts", import.meta.url), "utf8");
+  const stylesheet = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  const vercelConfig = JSON.parse(await readFile(new URL("../vercel.json", import.meta.url), "utf8"));
+
+  assert.match(viteConfig, /import\s*{\s*nitro\s*}\s*from\s*"nitro\/vite"/);
+  assert.match(viteConfig, /process\.env\.VERCEL/);
+  assert.equal(packageJson.scripts["build:vercel"], "vite build");
+  assert.equal(vercelConfig.buildCommand, "npm run build:vercel");
+  assert.equal("outputDirectory" in vercelConfig, false);
+  assert.doesNotMatch(stylesheet, /@import\s+["']tailwindcss["']/);
+});

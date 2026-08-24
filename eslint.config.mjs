@@ -5,7 +5,7 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   {
-    ignores: ["dist/**", ".next/**", "node_modules/**", ".openai/**"],
+    ignores: ["dist/**", ".next/**", ".vercel/**", ".output/**", "node_modules/**", ".openai/**"],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
