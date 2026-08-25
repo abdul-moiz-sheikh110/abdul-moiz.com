@@ -473,6 +473,19 @@ test("team and contact feature panels use their available space", async () => {
   assert.match(stylesheet, /@media\s*\(max-width:\s*850px\)[\s\S]*\.contact > \.shell[\s\S]*grid-template-columns:\s*1fr;/s);
 });
 
+test("Home working-together panel keeps its content grouped and vertically balanced on laptop", async () => {
+  const stylesheet = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(
+    stylesheet,
+    /\.team-aside-outcomes\s*{[^}]*align-items:\s*center;/s,
+  );
+  assert.match(
+    stylesheet,
+    /\.team-aside-outcomes > div:first-child\s*{[^}]*align-self:\s*auto;[^}]*justify-content:\s*flex-start;[^}]*gap:\s*clamp\(/s,
+  );
+});
+
 test("Home introduction uses a wide balanced copy column", async () => {
   const html = await (await render("/")).text();
   const stylesheet = await readFile(path.resolve(import.meta.dirname, "../app/globals.css"), "utf8");

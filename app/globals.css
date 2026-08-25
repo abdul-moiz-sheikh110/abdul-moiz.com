@@ -897,7 +897,7 @@ h3,
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(180px, 1.05fr);
   gap: clamp(28px, 4vw, 56px);
-  align-items: end;
+  align-items: center;
 }
 
 .team-aside-guides {
@@ -914,6 +914,12 @@ h3,
   justify-content: space-between;
   align-self: stretch;
   gap: 44px;
+}
+
+.team-aside-outcomes > div:first-child {
+  align-self: auto;
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 36px);
 }
 
 .team-outcome-list p {
