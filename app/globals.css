@@ -729,6 +729,7 @@ h3,
 }
 
 .about-grid > div:last-child {
+  align-self: center;
   max-width: 620px;
   color: var(--ink-soft);
   font-size: 17px;

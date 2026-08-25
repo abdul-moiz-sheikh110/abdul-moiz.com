@@ -610,6 +610,15 @@ test("site sections use available space without oversized empty gaps", async () 
   assert.match(stylesheet, /\.case-study\s*{[^}]*margin-bottom:\s*clamp\(64px,\s*8vw,\s*104px\);/s);
 });
 
+test("About feature paragraphs are vertically centered beside their headings", async () => {
+  const stylesheet = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(
+    stylesheet,
+    /\.about-grid > div:last-child\s*{[^}]*align-self:\s*center;/s,
+  );
+});
+
 test("removes every starter and generic studio placeholder", async () => {
   const response = await render();
   const html = await response.text();
