@@ -115,7 +115,15 @@ export default function AboutPage() {
             delivery. We look for a result that is clear, useful, and ready for its next step.
           </p>
         </div>
-        <div className="team-aside"><span>What guides the work</span><strong>Shared planning.<br />Focused knowledge.<br />Useful results.</strong></div>
+        <div className="team-aside team-aside-guides">
+          <div><span>What guides the work</span><strong>Shared planning.<br />Focused knowledge.<br />Useful results.</strong></div>
+          <div className="team-guide-list" aria-label="Our delivery priorities">
+            <span><b>01</b>Plan clearly</span>
+            <span><b>02</b>Work together</span>
+            <span><b>03</b>Review carefully</span>
+            <span><b>04</b>Deliver usefully</span>
+          </div>
+        </div>
       </section>
 
       <ContactCTA />

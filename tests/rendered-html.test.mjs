@@ -381,7 +381,7 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
     "Practical security reviews and improvements",
     "We define the scope, responsibilities, and next steps",
     "A focused selection of website and custom software work",
-    "Abdul Moiz stays involved from the first discussion to the final quality review",
+    "I stay involved from the first discussion to the final quality review",
     "We combine focused skills with one shared project direction",
     "Tell me what you need, what the finished work should achieve",
     "Discuss Your Project",
@@ -392,6 +392,22 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
   assert.doesNotMatch(html, /Team Lead for websites, software, security, search, and design/i);
   assert.match(html, /href="\/projects"[^>]*>View Our Projects</i);
   assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"[^>]*>\s*Discuss Your Project/i);
+});
+
+test("team and contact feature panels use their available space", async () => {
+  const home = await (await render("/")).text();
+  const about = await (await render("/about")).text();
+  const stylesheet = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+
+  assert.match(home, /class="team-aside team-aside-outcomes"/i);
+  assert.match(home, /class="team-outcome-list"/i);
+  assert.match(about, /class="team-aside team-aside-guides"/i);
+  assert.match(about, /class="team-guide-list"/i);
+  assert.match(home, /class="contact-brand"[^>]*>[\s\S]*fiverr-logo\.svg/i);
+  assert.match(stylesheet, /\.contact > \.shell\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:/s);
+  assert.match(stylesheet, /\.team-aside-outcomes\s*{[^}]*display:\s*grid;[^}]*grid-template-columns:/s);
+  assert.match(stylesheet, /\.team-guide-list\s*{[^}]*display:\s*grid;/s);
+  assert.match(stylesheet, /@media\s*\(max-width:\s*850px\)[\s\S]*\.contact > \.shell[\s\S]*grid-template-columns:\s*1fr;/s);
 });
 
 test("Home introduction uses a wide balanced copy column", async () => {

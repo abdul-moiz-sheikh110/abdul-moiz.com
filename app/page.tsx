@@ -151,16 +151,21 @@ export default function Home() {
           <p className="tag">Team delivery</p>
           <h2 id="team-delivery-heading">Abdul Moiz leads.<br />Specialists deliver.</h2>
           <p>
-            Abdul Moiz stays involved from the first discussion to the final quality review. The team contributes
+            I stay involved from the first discussion to the final quality review. The team contributes
             focused knowledge at each stage, keeping the project coordinated, carefully checked, and aligned with
             its intended purpose.
           </p>
           <div className="team-chips"><span>Shared planning</span><span>Specialist work</span><span>Testing</span><span>Quality review</span></div>
         </div>
-        <div className="team-aside">
-          <span>Working together</span>
-          <strong>One team.<br />Clear work.<br />Useful outcomes.</strong>
-          <p>We combine focused skills with one shared project direction, giving clients a clear experience from the first requirement to final delivery.</p>
+        <div className="team-aside team-aside-outcomes">
+          <div>
+            <span>Working together</span>
+            <strong>One team.<br />Clear work.<br />Useful outcomes.</strong>
+          </div>
+          <div className="team-outcome-list">
+            <p>We combine focused skills with one shared project direction, giving clients a clear experience from the first requirement to final delivery.</p>
+            <div><span>Plan</span><span>Build</span><span>Review</span><span>Deliver</span></div>
+          </div>
         </div>
       </section>
 
