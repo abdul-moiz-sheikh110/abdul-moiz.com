@@ -51,21 +51,21 @@ function elementMarkup(html, tagName) {
   return element[0];
 }
 
-test("every route presents Abdul Moiz as Team Lead in the shared header and footer", async () => {
+test("every route presents Abdul Moiz without attaching Team Lead to his shared name label", async () => {
   for (const route of ["/", "/about", "/projects"]) {
     const html = await (await render(route)).text();
     const header = elementMarkup(html, "header");
     const footer = elementMarkup(html, "footer");
 
     assert.match(header, /Abdul Moiz/);
-    assert.match(header, /Team Lead/i);
+    assert.doesNotMatch(header, /Abdul Moiz,?\s*Team Lead/i);
     assert.match(header, /href="\/"/);
     assert.match(header, /href="\/about"/);
     assert.match(header, /href="\/projects"/);
-    assert.match(header, /href="\/#contact"/);
+    assert.match(header, /href="mailto:abdulmoiz5902@gmail\.com"/i);
 
     assert.match(footer, /Abdul Moiz/);
-    assert.match(footer, /Team Lead/i);
+    assert.doesNotMatch(footer, /Abdul Moiz,?\s*Team Lead/i);
     assert.match(footer, /Digital services led by Abdul Moiz and delivered through a collaborative team\./i);
     assert.match(footer, /href="\/"/);
     assert.match(footer, /href="\/about"/);
@@ -102,10 +102,13 @@ test("Home source passes the full-name scan", async () => {
   assert.doesNotMatch(source, /Abdul(?! Moiz)/);
 });
 
-test("shared contact section invites visitors through Fiverr", async () => {
-  const source = await readFile(new URL("../app/components/ContactCTA.tsx", import.meta.url), "utf8");
-  assert.match(source, /Join us through Fiverr\./);
-  assert.doesNotMatch(source, /Tell Abdul Moiz what you need/);
+test("all public contact actions open Abdul Moiz's email", async () => {
+  for (const route of ["/", "/about", "/projects"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"/i);
+    assert.doesNotMatch(html, /href="\/#contact"/i);
+    assert.doesNotMatch(html, /https:\/\/www\.fiverr\.com\//i);
+  }
 });
 
 test("custom cursor is progressive and respects user input preferences", async () => {
@@ -257,7 +260,6 @@ test("Home presents the complete team-led offer", async () => {
 
   for (const phrase of [
     "Abdul Moiz",
-    "Team Lead",
     "Web development",
     "Custom software development",
     "Cybersecurity",
@@ -389,7 +391,7 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
 
   assert.doesNotMatch(html, /Team Lead for websites, software, security, search, and design/i);
   assert.match(html, /href="\/projects"[^>]*>View Our Projects</i);
-  assert.match(html, /href="https:\/\/www\.fiverr\.com\/"[^>]*>\s*Discuss Your Project/i);
+  assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"[^>]*>\s*Discuss Your Project/i);
 });
 
 test("Home introduction uses a wide balanced copy column", async () => {

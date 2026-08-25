@@ -28,7 +28,7 @@ The Projects route also includes one verified, anonymized team SEO case study fo
 
 ## Fiverr link status
 
-The call to action currently uses the generic [Fiverr URL](https://www.fiverr.com/). Replace it only when the final Abdul Moiz profile URL is supplied.
+Contact actions open an email to `abdulmoiz5902@gmail.com`.
 
 ## Publishing approval
 

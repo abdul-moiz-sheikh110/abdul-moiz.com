@@ -5,7 +5,7 @@ export function SiteFooter(): JSX.Element {
     <footer className="footer shell">
       <a className="brand" href="/" aria-label="Abdul Moiz portfolio home">
         <span className="brand-mark">AM</span>
-        <span>Abdul Moiz, Team Lead</span>
+        <span>Abdul Moiz</span>
       </a>
       <p>Digital services led by Abdul Moiz and delivered through a collaborative team.</p>
       <div className="footer-links" aria-label="Footer navigation">

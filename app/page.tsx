@@ -3,6 +3,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { projects } from "./data/projects";
 import { services } from "./data/services";
+import { contactHref } from "./data/contact";
 
 const selectedProjects = projects.filter((project) =>
   ["crest-view-academy", "teleco-solutions", "school-lms"].includes(project.slug),
@@ -121,7 +122,7 @@ export default function Home() {
                 {project.href ? (
                   <a className="text-link" href={project.href} target="_blank" rel="noreferrer">View live website <span aria-hidden="true">↗</span></a>
                 ) : (
-                  <a className="text-link" href="/#contact">Discuss a similar system <span aria-hidden="true">↗</span></a>
+                  <a className="text-link" href={contactHref}>Discuss a similar system <span aria-hidden="true">↗</span></a>
                 )}
               </div>
               {project.image ? (

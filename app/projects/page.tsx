@@ -5,6 +5,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import { projects, type Project } from "../data/projects";
 import { seoCaseStudy } from "../data/seoCaseStudy";
+import { contactHref } from "../data/contact";
 
 export const metadata: Metadata = {
   title: "Projects | Abdul Moiz",
@@ -77,7 +78,7 @@ export default function ProjectsPage() {
                   View live website <span aria-hidden="true">↗</span>
                 </a>
               ) : (
-                <a className="text-link" href="/#contact">
+                <a className="text-link" href={contactHref}>
                   Discuss a similar system <span aria-hidden="true">↗</span>
                 </a>
               )}
