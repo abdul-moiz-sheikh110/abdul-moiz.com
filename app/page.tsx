@@ -171,6 +171,7 @@ export default function Home() {
 
       <ContactCTA
         description="Tell me what you need, what the finished work should achieve, and any important requirements. I will review the project with the team and respond with a clear next step."
+        href="https://www.fiverr.com/inbox"
         linkLabel="Discuss Your Project"
       />
       <SiteFooter />

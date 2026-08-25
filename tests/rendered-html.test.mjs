@@ -102,13 +102,17 @@ test("Home source passes the full-name scan", async () => {
   assert.doesNotMatch(source, /Abdul(?! Moiz)/);
 });
 
-test("all public contact actions open Abdul Moiz's email", async () => {
-  for (const route of ["/", "/about", "/projects"]) {
+test("public contact actions use the approved destinations", async () => {
+  for (const route of ["/about", "/projects"]) {
     const html = await (await render(route)).text();
     assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"/i);
     assert.doesNotMatch(html, /href="\/#contact"/i);
     assert.doesNotMatch(html, /https:\/\/www\.fiverr\.com\//i);
   }
+
+  const home = await (await render("/")).text();
+  assert.match(home, /href="https:\/\/www\.fiverr\.com\/inbox"[^>]*>\s*Discuss Your Project/i);
+  assert.match(home, /href="mailto:abdulmoiz5902@gmail\.com"[^>]*>\s*Contact/i);
 });
 
 test("custom cursor is progressive and respects user input preferences", async () => {
@@ -393,7 +397,7 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
   assert.match(html, /One direction\.[\s\S]*Delivered together\./i);
   assert.doesNotMatch(html, /Abdul Moiz leads\.[\s\S]*Specialists deliver\./i);
   assert.match(html, /href="\/projects"[^>]*>View Our Projects</i);
-  assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"[^>]*>\s*Discuss Your Project/i);
+  assert.match(html, /href="https:\/\/www\.fiverr\.com\/inbox"[^>]*>\s*Discuss Your Project/i);
 });
 
 test("team and contact feature panels use their available space", async () => {
