@@ -8,7 +8,7 @@ import { services } from "../data/services";
 export const metadata: Metadata = {
   title: "About Abdul Moiz",
   description:
-    "Meet Abdul Moiz, the Team Lead behind a collaborative group delivering web development, custom software development, cybersecurity, SEO, logo design, and graphic design.",
+    "Learn how Abdul Moiz and a collaborative digital team deliver web development, custom software, cybersecurity, SEO, logo design, and graphic design.",
 };
 
 const approach = [
@@ -21,7 +21,7 @@ const approach = [
 export default function AboutPage() {
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader currentPath="/about" />
 
       <section className="hero page-hero shell" aria-labelledby="about-title">
         <p className="eyebrow"><span /> About Us</p>
@@ -92,13 +92,13 @@ export default function AboutPage() {
       </section>
 
       <section className="approach-list shell" aria-labelledby="working-method-heading">
-        <div className="section-head"><p id="working-method-heading">Working method</p><span>Four practical steps</span></div>
+        <div className="section-head"><h2 id="working-method-heading">Working method</h2><span>Four practical steps</span></div>
         <div>
           {approach.map(([number, title, description]) => (
             <article key={number}>
               <span>{number}</span>
               <div>
-                <h2>{title}</h2>
+                <h3 className="approach-step-title">{title}</h3>
                 <p>{description}</p>
               </div>
             </article>

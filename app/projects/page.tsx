@@ -10,7 +10,7 @@ import { contactHref } from "../data/contact";
 export const metadata: Metadata = {
   title: "Projects | Abdul Moiz",
   description:
-    "Selected website and custom system work delivered by Abdul Moiz with team-supported digital expertise.",
+    "Explore website, custom software, and SEO work delivered by Abdul Moiz and a collaborative digital team.",
 };
 
 function ProjectVisual({ project }: { project: Project }) {
@@ -45,7 +45,7 @@ function ProjectVisual({ project }: { project: Project }) {
 export default function ProjectsPage() {
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader currentPath="/projects" />
 
       <section className="hero page-hero shell" aria-labelledby="projects-title">
         <p className="eyebrow"><span /> Selected work</p>
@@ -74,11 +74,11 @@ export default function ProjectsPage() {
                 {project.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
               </ul>
               {project.href ? (
-                <a className="text-link" href={project.href} target="_blank" rel="noopener noreferrer">
+                <a className="text-link" href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} live website`}>
                   View live website <span aria-hidden="true">↗</span>
                 </a>
               ) : (
-                <a className="text-link" href={contactHref}>
+                <a className="text-link" href={contactHref} aria-label={`Discuss a similar ${project.title} system`}>
                   Discuss a similar system <span aria-hidden="true">↗</span>
                 </a>
               )}

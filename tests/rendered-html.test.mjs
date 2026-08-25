@@ -240,6 +240,61 @@ test("LMS project uses its supplied image without an invented website URL", asyn
 test("projects metadata describes Abdul Moiz work", async () => {
   const html = await (await render("/projects")).text();
   assert.match(html, /<title>Projects \| Abdul Moiz/);
+  assert.match(
+    html,
+    /<meta name="description" content="Explore website, custom software, and SEO work delivered by Abdul Moiz and a collaborative digital team\."\/>/i,
+  );
+});
+
+test("About metadata presents Abdul Moiz as part of the collaborative team", async () => {
+  const html = await (await render("/about")).text();
+  assert.match(
+    html,
+    /<meta name="description" content="Learn how Abdul Moiz and a collaborative digital team deliver web development, custom software, cybersecurity, SEO, logo design, and graphic design\."\/>/i,
+  );
+  assert.doesNotMatch(html, /the Team Lead behind/i);
+});
+
+test("header navigation identifies the current page", async () => {
+  for (const [route, label] of [["/", "Home"], ["/about", "About"], ["/projects", "Projects"]]) {
+    const html = await (await render(route)).text();
+    const header = elementMarkup(html, "header");
+    assert.match(header, new RegExp(`<a[^>]*href="${route}"[^>]*aria-current="page"[^>]*>${label}<\\/a>`, "i"));
+    assert.equal((header.match(/aria-current="page"/gi) ?? []).length, 1);
+  }
+});
+
+test("project links have unique accessible names", async () => {
+  const projectsHtml = await (await render("/projects")).text();
+  for (const title of ["Crest View Academy", "Teleco Solutions", "110 Solutions"]) {
+    assert.match(projectsHtml, new RegExp(`aria-label="View ${title} live website"`, "i"));
+  }
+  assert.match(projectsHtml, /aria-label="Discuss a similar School LMS system"/i);
+
+  const homeHtml = await (await render("/")).text();
+  for (const title of ["Crest View Academy", "Teleco Solutions"]) {
+    assert.match(homeHtml, new RegExp(`aria-label="View ${title} live website"`, "i"));
+  }
+  assert.match(homeHtml, /aria-label="Discuss a similar School LMS system"/i);
+});
+
+test("About working method uses one section heading followed by step headings", async () => {
+  const html = await (await render("/about")).text();
+  const section = html.match(/<section class="approach-list shell"[\s\S]*?<\/section>/i)?.[0];
+  assert.ok(section, "About should include the working method section");
+  assert.match(section, /<h2[^>]*id="working-method-heading"[^>]*>Working method<\/h2>/i);
+  assert.equal((section.match(/<h2\b/gi) ?? []).length, 1);
+  for (const title of ["Understand the need", "Plan together", "Build with care", "Review and deliver"]) {
+    assert.match(section, new RegExp(`<h3[^>]*>${title}<\\/h3>`, "i"));
+  }
+});
+
+test("About working method section label keeps the compact section-head typography", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(
+    css,
+    /\.approach-list \.section-head h2\s*{[^}]*font-size:\s*inherit;[^}]*font-weight:\s*inherit;[^}]*letter-spacing:\s*inherit;[^}]*line-height:\s*inherit;[^}]*text-transform:\s*inherit;/s,
+  );
 });
 
 test("renders the professional Abdul Moiz portfolio", async () => {
@@ -446,7 +501,6 @@ test("About explains Abdul Moiz team leadership", async () => {
 
   for (const phrase of [
     "Abdul Moiz",
-    "Team Lead",
     "Every project is a combined effort",
     "quality review",
     "Web development",
@@ -458,6 +512,8 @@ test("About explains Abdul Moiz team leadership", async () => {
   ]) {
     assert.match(html, new RegExp(phrase, "i"));
   }
+
+  assert.doesNotMatch(html, /Team Lead/i);
 
   for (const forbidden of [
     "marketing",

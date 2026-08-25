@@ -2,7 +2,11 @@ import type { JSX } from "react";
 
 import { contactHref } from "../data/contact";
 
-export function SiteHeader(): JSX.Element {
+type SiteHeaderProps = {
+  currentPath: "/" | "/about" | "/projects";
+};
+
+export function SiteHeader({ currentPath }: SiteHeaderProps): JSX.Element {
   return (
     <header className="shell">
       <nav className="nav" aria-label="Main navigation">
@@ -11,9 +15,9 @@ export function SiteHeader(): JSX.Element {
           <span>Abdul Moiz</span>
         </a>
         <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/projects">Projects</a>
+          <a href="/" aria-current={currentPath === "/" ? "page" : undefined}>Home</a>
+          <a href="/about" aria-current={currentPath === "/about" ? "page" : undefined}>About</a>
+          <a href="/projects" aria-current={currentPath === "/projects" ? "page" : undefined}>Projects</a>
           <a className="nav-cta" href={contactHref}>Contact</a>
         </div>
       </nav>

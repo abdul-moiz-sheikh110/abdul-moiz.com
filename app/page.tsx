@@ -43,7 +43,7 @@ const selectedProjectCopy: Record<string, { description: string; capabilities: s
 export default function Home() {
   return (
     <main>
-      <SiteHeader />
+      <SiteHeader currentPath="/" />
 
       <section className="hero shell" id="top">
         <p className="eyebrow"><span /> Portfolio · Team-led delivery</p>
@@ -120,9 +120,9 @@ export default function Home() {
                   {selectedProjectCopy[project.slug].capabilities.map((capability) => <li key={capability}>{capability}</li>)}
                 </ul>
                 {project.href ? (
-                  <a className="text-link" href={project.href} target="_blank" rel="noreferrer">View live website <span aria-hidden="true">↗</span></a>
+                  <a className="text-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.title} live website`}>View live website <span aria-hidden="true">↗</span></a>
                 ) : (
-                  <a className="text-link" href={contactHref}>Discuss a similar system <span aria-hidden="true">↗</span></a>
+                  <a className="text-link" href={contactHref} aria-label={`Discuss a similar ${project.title} system`}>Discuss a similar system <span aria-hidden="true">↗</span></a>
                 )}
               </div>
               {project.image ? (

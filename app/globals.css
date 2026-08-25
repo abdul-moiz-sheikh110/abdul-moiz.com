@@ -307,8 +307,16 @@ h3,
   text-transform: uppercase;
 }
 
-.section-head p {
+.section-head p,
+.section-head h2 {
   margin: 0;
+}
+
+.section-head h2 {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
 }
 
 .section-head span {
@@ -790,9 +798,18 @@ h3,
   border-bottom: 1px solid var(--line);
 }
 
-.approach-list h2 {
+.approach-list h2,
+.approach-list .approach-step-title {
   margin: 0;
   font-size: clamp(2.1rem, 3.5vw, 3.25rem);
+}
+
+.approach-list .section-head h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
 }
 
 .approach-list article p {
