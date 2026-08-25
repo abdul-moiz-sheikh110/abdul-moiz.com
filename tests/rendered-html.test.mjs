@@ -435,6 +435,9 @@ test("Home capability heading stays on exactly two responsive lines", async () =
 test("About explains Abdul Moiz team leadership", async () => {
   const html = await (await render("/about")).text();
 
+  assert.match(html, /The team and I review progress throughout the work/i);
+  assert.doesNotMatch(html, /Abdul Moiz and the team review progress throughout the work/i);
+
   for (const phrase of [
     "Abdul Moiz",
     "Team Lead",

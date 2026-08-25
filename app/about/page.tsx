@@ -111,7 +111,7 @@ export default function AboutPage() {
           <p className="tag">Quality at every stage</p>
           <h2 id="quality-heading">Careful work,<br />quality <em>review.</em></h2>
           <p>
-            Abdul Moiz and the team review progress throughout the work, then carry out a final quality review before
+            The team and I review progress throughout the work, then carry out a final quality review before
             delivery. We look for a result that is clear, useful, and ready for its next step.
           </p>
         </div>
