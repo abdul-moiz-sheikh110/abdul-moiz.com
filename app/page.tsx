@@ -149,9 +149,9 @@ export default function Home() {
       <section className="team shell" aria-labelledby="team-delivery-heading">
         <div className="team-card">
           <p className="tag">Team delivery</p>
-          <h2 id="team-delivery-heading">Abdul Moiz leads.<br />Specialists deliver.</h2>
+          <h2 id="team-delivery-heading">One direction.<br />Delivered together.</h2>
           <p>
-            I stay involved from the first discussion to the final quality review. The team contributes
+            My team and I stay involved from the first discussion to the final quality review. The team contributes
             focused knowledge at each stage, keeping the project coordinated, carefully checked, and aligned with
             its intended purpose.
           </p>

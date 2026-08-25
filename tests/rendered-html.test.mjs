@@ -381,7 +381,7 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
     "Practical security reviews and improvements",
     "We define the scope, responsibilities, and next steps",
     "A focused selection of website and custom software work",
-    "I stay involved from the first discussion to the final quality review",
+    "My team and I stay involved from the first discussion to the final quality review",
     "We combine focused skills with one shared project direction",
     "Tell me what you need, what the finished work should achieve",
     "Discuss Your Project",
@@ -390,6 +390,8 @@ test("Home uses the approved coordinated-team portfolio content", async () => {
   }
 
   assert.doesNotMatch(html, /Team Lead for websites, software, security, search, and design/i);
+  assert.match(html, /One direction\.[\s\S]*Delivered together\./i);
+  assert.doesNotMatch(html, /Abdul Moiz leads\.[\s\S]*Specialists deliver\./i);
   assert.match(html, /href="\/projects"[^>]*>View Our Projects</i);
   assert.match(html, /href="mailto:abdulmoiz5902@gmail\.com"[^>]*>\s*Discuss Your Project/i);
 });
